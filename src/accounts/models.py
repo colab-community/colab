@@ -1,9 +1,12 @@
+# -*- coding: utf-8 -*-
 
 import urlparse
 
-from django.db import models
+from django.db import models, DatabaseError
 from django.contrib.auth.models import AbstractUser
 from django.core.urlresolvers import reverse
+
+from conversejs import xmpp
 
 from .utils import mailman
 
