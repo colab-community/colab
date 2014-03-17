@@ -3,7 +3,7 @@ from fabric.operations import put
 from fabric.api import run, sudo, env
 from fabric.contrib.files import exists
 from fabric.decorators import with_settings
-from fabric.context_managers import prefix, cd, settings
+from fabric.context_managers import prefix, cd, settings, hide
 
 env.user = 'colab' # key depends on env
 env.use_shell = False
@@ -128,3 +128,34 @@ def runserver(update_requirements=False):
         run('python manage.py syncdb')
         run('python manage.py migrate')
         run('python manage.py runserver 0.0.0.0:7000')
+
+@with_settings(user='vagrant')
+def trac(port=5000):
+    with cd('/vagrant/src/'), prefix(WORKON_COLAB):
+        run('tracd --port ' + str(port) + ' /var/local/trac')
+
+@with_settings(user='vagrant')
+def solr(port=8983):
+    with cd('/vagrant/src/'), prefix(WORKON_COLAB):
+        run('cd /usr/share/solr/example; java -jar start.jar -Djetty.port=' + str(port))
+
+@with_settings(user='vagrant')
+def solr_update_index():
+    with cd('/vagrant/src/'), prefix(WORKON_COLAB):
+        returnMessage = run('python manage.py update_index')
+        if 'error: [Errno 111] Connection refused' in returnMessage:
+            print red("Please run fab solr to start solr first")
+        else:
+            print green("All the index were updated")
+
+@with_settings(user='vagrant')
+def import_mailman():
+    with cd('/vagrant/src/'), prefix(WORKON_COLAB):
+        returnMessage = run('python manage.py import_emails')
+
+def red(message):
+    return "\033[0;31m" + message + "\033[0m"
+
+def green(message):
+    return "\033[0;32m" + message + "\033[0m"
+
