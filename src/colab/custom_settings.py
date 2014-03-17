@@ -288,6 +288,7 @@ BROWSERID_CREATE_USER = False
 ## Proxy settings
 COLAB_TRAC_URL = 'localhost:5000/trac/'
 COLAB_CI_URL = 'localhost:9000/ci/'
+COLAB_GITLAB_URL = 'localhost:8090/'
 
 REVPROXY_ADD_REMOTE_USER = True
 
