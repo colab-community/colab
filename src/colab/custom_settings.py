@@ -289,7 +289,7 @@ BROWSERID_CREATE_USER = False
 COLAB_TRAC_URL = 'http://localhost:5000/trac/'
 COLAB_CI_URL = 'http://localhost:8080/ci/'
 COLAB_GITLAB_URL = 'http://localhost:8090/gitlab/'
-COLAB_REDMINE_URL = 'http://localhost:9080/'
+COLAB_REDMINE_URL = 'http://localhost:9080/redmine/'
 
 REVPROXY_ADD_REMOTE_USER = True
 
