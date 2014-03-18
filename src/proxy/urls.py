@@ -16,6 +16,6 @@ urlpatterns = patterns('',
     # Gitlab extra URLs
     url(r'^gitlab/(?P<path>.*)$', GitlabProxyView.as_view()),
 
-    # Redmine extra URLs
+    # Redmine
     url(r'^redmine/(?P<path>.*)$', RedmineProxyView.as_view()),
 )
