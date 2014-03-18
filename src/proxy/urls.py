@@ -13,10 +13,6 @@ urlpatterns = patterns('',
     url(r'^ci/(?P<path>.*)$', JenkinsProxyView.as_view()),
 
     # Gitlab URLs
-
-    url(r'^gitlab/(?P<path>.*)$',
-        GitlabProxyView.as_view()),
-
-    url(r'^(?P<path>(?:users|dashboard).*)$',
+    url(r'^(?P<path>(?:users|dashboard|profile).*)$',
         GitlabProxyView.as_view()),
 )
