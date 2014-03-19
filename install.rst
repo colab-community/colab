@@ -115,9 +115,9 @@ Inside the VM(vagrant ssh) download e install trac
 .. code-block::
 
   sudo apt-get install trac
-  sudo pip install --upgrade Trac
+  sudo pip install --upgrade psycopg2 Trac
 
-Now you'll need to configure trac so it can access the previously created database. 
+Now you'll need to configure trac so it can access the previously created database.
 
 .. code-block::
 
@@ -172,31 +172,31 @@ In Progress of making it readable
 
   #indexa
   python manage.py update_index
-  
-  
+
+
 Installing Mailman with Nginx
 =============================
 
 Nginx Configuration:
 
 In order to let nginx serve the Mailman web interface, we need to have the fcgiwrap package installed:
-  
+
 .. code-block::
 
   sudo apt-get install fcgiwrap
-  
+
 Setting the vhost:
-  
+
 Create the www.example.com web site root as follows:
 
 .. code-block::
-  
+
   mkdir -p /var/www/www.example.com/web
-  
+
 Next create a basic nginx vhost configuration editing the .vhost file (editor /etc/nginx/sites-available/www.example.com.vhost):
-  
+
 .. code-block::
-  
+
   server {
        listen 8000;
        server_name www.example.com example.com;
@@ -225,7 +225,7 @@ Next create a basic nginx vhost configuration editing the .vhost file (editor /e
                 log_not_found off;
        }
   }
-  
+
 To enable the vhost, we create a symlink to it from the /etc/nginx/sites-enabled/ directory:
 
 .. code-block::
@@ -238,7 +238,7 @@ Reload nginx for the changes to take effect:
 .. code-block::
 
   /etc/init.d/nginx reload
-  
+
 Mailman Configuration:
 
 .. code-block::
@@ -250,7 +250,7 @@ Create a new mailing list:
 .. code-block::
 
   sudo newlist mailman
-  
+
 Open the /etc/aliases (editor /etc/aliases) and add the following:
 
 .. code-block::
@@ -278,7 +278,7 @@ Now restart postfix and mailman:
 
   sudo /etc/init.d/postfix restart
   sudo /etc/init.d/mailman start
-  
+
 Open /etc/nginx/sites-available/www.example.com.vhost and add the following part to the server {} container:
 
 .. code-block::
@@ -313,17 +313,17 @@ Now create the fastcgi_params file and add the following:
   fastcgi_param	REQUEST_METHOD		$request_method;
   fastcgi_param	CONTENT_TYPE		$content_type;
   fastcgi_param	CONTENT_LENGTH		$content_length;
-  
+
   fastcgi_param	SCRIPT_FILENAME		$document_root$fastcgi_script_name;
   fastcgi_param	SCRIPT_NAME		$fastcgi_script_name;
   fastcgi_param	REQUEST_URI		$request_uri;
   fastcgi_param	DOCUMENT_URI		$document_uri;
   fastcgi_param	DOCUMENT_ROOT		$document_root;
   fastcgi_param	SERVER_PROTOCOL		$server_protocol;
-  
+
   fastcgi_param	GATEWAY_INTERFACE	CGI/1.1;
   fastcgi_param	SERVER_SOFTWARE		nginx;
-  
+
   fastcgi_param	REMOTE_ADDR		$remote_addr;
   fastcgi_param	REMOTE_PORT		$remote_port;
   fastcgi_param	SERVER_ADDR		$server_addr;
@@ -341,8 +341,8 @@ To these modifications have effect do the following:
 
 .. code-block::
 
-  sudo withlist -l -a -r fix_url 
-  
+  sudo withlist -l -a -r fix_url
+
 Also tt's needed to add permission to mailman to access the name_of_the_list.mbox because it needs to archive the emails:
 
 .. code-block::
@@ -351,21 +351,21 @@ Also tt's needed to add permission to mailman to access the name_of_the_list.mbo
   sudo chown -R root:list /var/lib/mailman/data/aliases
   sudo chown -R root:list /etc/aliases
   sudo chmod -R u+rwX /var/lib/mailman/archives
-  
+
 Now restart fcgi, mailman and nginx:
 
 .. code-block::
-  
+
   sudo /etc/init.d/fcgiwrap restart
   sudo /etc/init.d/mailman restart
   sudo /etc/init.d/nginx reload
-  
+
 To see if it's working:
 
 .. code-block::
-  
+
   http://localhost:8080/cgi-bin/mailman/listinfo/mailman
-  
+
 Setting up Colab
 =========================
 
@@ -382,11 +382,11 @@ Change COLAB_TRAC_URL to
 Or the port you're using to Trac
 
 After this it's needed to import the e-mails from Mailman:
-  
+
 .. code-block::
-  
+
   sudo python manage.py import_emails
-  
+
 And also update Solr:
 
 .. code-block::
