@@ -159,3 +159,8 @@ def red(message):
 def green(message):
     return "\033[0;32m" + message + "\033[0m"
 
+@with_settings(user='vagrant')
+def gitlab(port=8090):
+    with cd('/home/git/gitlab/'):
+        run('sudo -u git -H bundle exec foreman start -p '+str(port))
+
