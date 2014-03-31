@@ -99,7 +99,7 @@
               <a href="#" class="dropdown-toggle" data-toggle="dropdown">{% trans "Redmine" %} <b class="caret"></b></a>
               <ul class="dropdown-menu">
                 {% if user.is_active %}
-                    <li><a href="/projects">{% trans "Projects" %}</a></li>
+                    <li><a href="/redmine/projects">{% trans "Projects" %}</a></li>
                 {% else %}
                     {% trans 'Login' as login_text %}
                     <li>{% browserid_login text=login_text %}</li>
