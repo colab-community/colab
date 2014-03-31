@@ -164,3 +164,7 @@ def gitlab(port=8090):
     with cd('/home/git/gitlab/'):
         run('sudo -u git -H bundle exec foreman start -p '+str(port))
 
+@with_settings(user='vagrant')
+def redmine(port=9080):
+    with cd('/opt/redmine/'):
+        run('sudo ruby script/rails server webrick -e development -p '+str(port))

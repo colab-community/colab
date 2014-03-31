@@ -83,6 +83,17 @@
               </ul>
             </li>
             <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown">{% trans "Redmine" %} <b class="caret"></b></a>
+              <ul class="dropdown-menu">
+                {% if user.is_active %}
+                    <li><a href="/projects">{% trans "Projects" %}</a></li>
+                {% else %}
+                    {% trans 'Login' as login_text %}
+                    <li>{% browserid_login text=login_text %}</li>
+                {% endif %}
+              </ul>
+            </li>
+            <li class="dropdown">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown">{% trans "Contribute" %} <b class="caret"></b></a>
               <ul class="dropdown-menu">
                 <li><a href="/wiki">Wiki</a></li>

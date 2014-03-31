@@ -1,7 +1,7 @@
 
 from django.conf.urls import patterns, include, url
 
-from .views import TracProxyView, JenkinsProxyView, GitlabProxyView
+from .views import TracProxyView, JenkinsProxyView, GitlabProxyView, RedmineProxyView
 
 
 urlpatterns = patterns('',
@@ -15,4 +15,8 @@ urlpatterns = patterns('',
     # Gitlab URLs
     url(r'^(?P<path>(?:users|dashboard|profile).*)$',
         GitlabProxyView.as_view()),
+
+    #  URLs
+    url(r'^(?P<path>(?:projects).*)$',
+        RedmineProxyView.as_view()),
 )
