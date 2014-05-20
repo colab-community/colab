@@ -102,11 +102,36 @@ Create a password for postgresql database, in this case we have an user called `
     
 .. code-block::
 
-    ALTER USER postgres WITH PASSWORD 'colab';
     CREATE USER colab SUPERUSER INHERIT CREATEDB CREATEROLE;
     ALTER USER colab PASSWORD 'colab';
     \q
+
+Edit the users permissions on pg_hba.conf
+
+.. code-block::
+
+    sudo vi /var/lib/pgsql/9.3/data/pg_hba.conf
+
+Set the permission like this
+
+.. code-block::
+
+    # TYPE  DATABASE        USER            ADDRESS                 METHOD
     
+    # "local" is for Unix domain socket connections only
+    local   all             postgres                                     peer
+    local   all             colab                                     md5
+    # IPv4 local connections:
+    host    all             postgres             127.0.0.1/32            ident
+    host    all             colab             127.0.0.1/32            md5
+    # IPv6 local connections:
+    host    all             postgres             ::1/128                 ident
+    host    all             colab             ::1/128                 md5
+
+.. code-block::
+
+    [ESC]:wq!
+
 Restart the postgresql
 
 .. code-block::
@@ -139,28 +164,6 @@ If you are going to use postgresql, create the database for trac
 
     	CREATE DATABASE "trac_colab" WITH OWNER "colab" ENCODING 'UTF8' LC_COLLATE='en_US.UTF-8' LC_CTYPE='en_US.UTF-8' TEMPLATE=template0;
     	\q
-
-And change the database authentication to md5
-
-.. code-block::
-
-    sudo vi /var/lib/pgsql/9.3/data/pg_hba.conf
-    
-.. code-block::
-
-    [ESC]:%s/peer/md5
-    [ESC]:%s/ident/md5
-
-.. code-block::
-
-    [ESC]:wq!
-    	
-And restart postgresql
-
-.. code-block::
-
-    sudo service postgresql-9.3 restart
-    
     
 Install Trac
 
@@ -325,8 +328,8 @@ And remove those lines
 
 *NOTE:*
 
-    To run Solr
-        cd /usr/share/solr/example/; sudo java -jar start.jar
+    To run Solr: cd /usr/share/solr/example/; sudo java -jar start.jar . And to access it `http://localhost:8983 <http://localhost:8983>`_
+
 
 Mailman
 =======
@@ -371,19 +374,6 @@ Save and quit
 .. code-block::
 
     [ESC]:wq!
-
-Add nginx to the apache's user group, to grant all the right permissions to spawn-fcgi
-
-.. code-block::
-
-    sudo usermod -a -G apache nginx
-    
-Put spaw-fcgi to start with the system, and start it
-
-.. code-block::
-
-    sudo chkconfig --levels 235 spawn-fcgi on
-    sudo /etc/init.d/spawn-fcgi start
 
 Install mailman
 
@@ -513,7 +503,30 @@ Run the fix_url and restart mailman.
     sudo /usr/lib/mailman/bin/withlist -l -a -r fix_url
     sudo service mailman restart
 
+Giving the rights permissions to fcgi
+
+Add nginx to the apache's user group (create by mailman), to grant all the right permissions to spawn-fcgi
+
+.. code-block::
+
+    sudo usermod -a -G apache nginx
+
+Put spaw-fcgi to start with the system, and start it
+
+.. code-block::
+
+    sudo chkconfig --levels 235 spawn-fcgi on
+    sudo /etc/init.d/spawn-fcgi start
+
+Restart the services
+
+.. code-block::
+
+    sudo service mailman restart
+    sudo service nginx restart
+
 *NOTE:*
+
     You can access mailman in this url: `http://localhost:8080/mailman/cgi-bin/listinfo <http://localhost:8080/mailman/cgi-bin/listinfo>`_ 
 
 
@@ -626,9 +639,6 @@ Install colab requirements
 
     sudo pip2.7 install mimeparse
     sudo pip2.7 install -r /opt/colab/requirements.txt
-    sudo pip2.7 uninstall django_browserid -y
-    sudo pip2.7 install django_browserid==0.9
-
     
 Create the local_settings file in colab folder
 
@@ -668,15 +678,8 @@ Build the solr schema.xml
 
     cd /opt/colab/src
     sudo su
-    python2.7 manage.py build_solr_schema > /opt/colab/src/schema.xml
+    python2.7 manage.py build_solr_schema > /usr/share/solr/example/solr/collection1/conf/schema.xml
     exit
-
-Copy the shcema to solr
-
-.. code-block::
-
-    sudo cp /opt/colab/src/schema.xml /usr/share/solr/example/solr/collection1/conf/schema.xml
-    sudo rm -f /opt/colab/src/schema.xml
 
 Edit the schema to change the ``stopwords_en.txt`` to ``lang/stopwords_en.txt``
 
