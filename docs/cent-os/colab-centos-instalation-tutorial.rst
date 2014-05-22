@@ -169,7 +169,7 @@ Install Trac
 
 .. code-block::
 
-    sudo easy_install trac
+    sudo yum install -y trac
 
 Intiate Trac
 
@@ -702,7 +702,7 @@ Clone and configure the ``gitlab`` repository
 .. code-block::
 
     cd /home/git
-    sudo -u git -H /usr/local/bin/git clone https://github.com/MatheusFaria/gitlabhq.git -b 6-8-stable gitlab
+    sudo -u git -H /usr/local/bin/git clone https://github.com/colab-community/gitlabhq.git -b 6-8-stable gitlab
     cd /home/git/gitlab
     sudo -u git -H cp config/gitlab.yml.example config/gitlab.yml
     chown -R git {log,tmp}
