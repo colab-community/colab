@@ -7,6 +7,7 @@ urlpatterns = patterns('',
     # Trac URLs
     url(r'^(?P<path>(?:admin|wiki|changeset|newticket|ticket|chrome|timeline|roadmap|browser|report|tags|query|about|prefs|log|attachment|raw-attachment|diff|milestone).*)$',
         TracProxyView.as_view()),
+
     # Trac extra URLs
     url(r'^trac/(?P<path>.*)$', TracProxyView.as_view()),
 
