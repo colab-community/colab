@@ -84,7 +84,7 @@ Remove any ruby installed before, and download ``ruby-2.0.0-p451``
     
 *NOTE:*
 
-    If you can't reach the host from ``ruby-2.0.0-p451``, you alsa can try this command: sudo curl --progress http://cache.ruby-lang.org/pub/ruby/2.0/ruby-2.0.0-p451.tar.bz2 | tar xj
+    If you can't reach the host from ``ruby-2.0.0-p451``, you also can try this command: sudo curl --progress http://cache.ruby-lang.org/pub/ruby/2.0/ruby-2.0.0-p451.tar.bz2 | tar xj
     
 Install ruby 2.0.0
 
@@ -189,7 +189,7 @@ Clone and configure the ``gitlab`` repository
     sudo -u git -H cp config/unicorn.rb.example config/unicorn.rb
     sudo -u git -H cp config/initializers/rack_attack.rb.example config/initializers/rack_attack.rb
 
-If you are using the port 8080 change the unicorn file
+Change the port you're using for gitlab, in this case we use 8090
 
 .. code-block::
 
@@ -205,11 +205,61 @@ To
 
 .. code-block::
 
-    listen "127.0.0.1:6000", :tcp_nopush => true
+    listen "127.0.0.1:8090", :tcp_nopush => true
+
+Also uncomment or add the following
+
+.. code-block::
+
+    ENV['RAILS_RELATIVE_URL_ROOT'] = "/gitlab"
 
 .. code-block::
 
     [ESC]:wq!
+
+Change defautl URL in application.rb
+
+.. code-block::
+
+    sudo vim /home/git/gitlab/config/application.rb
+
+Uncomment or add the following
+
+.. code-block::
+
+    config.relative_url_root = "/gitlab"
+
+Change defautl URL in gitlab.yml
+
+.. code-block::
+
+    sudo vim /home/git/gitlab/config/gitlab.yml
+
+Uncomment or add the following
+
+.. code-block::
+
+    relative_url_root: /gitlab
+
+Change defautl URL in gitlab-shell/config.yml
+
+.. code-block::
+
+    sudo vim /home/git/gitlab-shell/config.yml
+
+Change the following line, From:
+
+.. code-block::
+
+    gitlab_url: "http://localhost/"
+
+To, using the your IP:
+
+.. code-block::
+
+    gitlab_url: "http://127.0.0.1:8090/gitlab/"
+
+
 
 Configure git and database
 
@@ -285,46 +335,9 @@ Compile the asstes, to development change the env to ``RAILS_ENV=development``
 
     sudo -u git -H /usr/local/bin/bundle exec rake assets:precompile RAILS_ENV=production
  
-Configure the nginx to the production mode
+Change group permissions
 
-.. code-block::
-
-    sudo cp /home/git/gitlab/lib/support/nginx/gitlab /etc/nginx/conf.d/gitlab.conf
-
-.. code-block::
-
-    sudo vim /etc/nginx/conf.d/gitlab.conf
-
-Change
-
-.. code-block::
-
-    listen *:80 default_server; # e.g., listen 192.168.1.1:80; In most cases *:80 is a good idea
-    server_name YOUR_SERVER_FQDN; # e.g., server_name source.example.com;
-
-To
-
-.. code-block::
-
-    listen 8090; # e.g., listen 192.168.1.1:80; In most cases *:80 is a good idea
-    server_name localhost; # e.g., server_name source.example.com;
-    
-.. code-block::
-
-    [ESC]:wq!
-    
-Add nginx to git user group, and give the permission to git user folder
-
-.. code-block::
-
-    usermod -a -G git nginx
     chmod g+rx /home/git/
-    
-Restart Nginx
-
-.. code-block::
-
-    service nginx restart
     
 Restart gitlab
 
@@ -334,4 +347,4 @@ Restart gitlab
 
 *NOTE:*
 
-    You can access gitlab in this url: `http://localhost:8090 <http://localhost:8090>`_
+    You can access gitlab in this url: `http://localhost:8090/gitlab, but it won't log-in without the REMOTE_USER provided by colab
