@@ -136,6 +136,21 @@ Import mailman e-mails
 
     sudo python2.7 /opt/colab/src/manage.py import_emails
 
+Create Cronjobs to run django modules
+
+.. code-block::
+
+    crontab -e
+
+Add the following lines
+
+    5 * * * * /usr/bin/python2.7 /opt/colab/src/manage.py import_emails
+    45 * * * * /usr/bin/python2.7 /opt/colab/src/manage.py update_index
+
+.. code-block::
+
+    [ESC]:wq!
+
 *NOTE:*
 
     To run Colab: python2.7 /opt/colab/src/manage.py runserver . To access colab go in: `http://localhost:8000 <http://localhost:8000>`_
