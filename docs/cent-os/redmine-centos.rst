@@ -7,16 +7,16 @@
 Redmine
 =======
 
-Dependencias
-======
-
 [Instalar Epel]
+
 rpm -Uvh http://fedora.uib.no/epel/6/x86_64/epel-release-6-8.noarch.rpm 
 
-### Instalar dependencias
+[Instalar dependencias]
+
 sudo yum -y install zlib-devel curl-devel openssl-devel httpd-devel apr-devel apr-util-devel  subversion  git postgresql-devel 
 
 [postgresql]
+
 sudo yum localinstall http://yum.postgresql.org/9.3/redhat/rhel-6-x86_64/pgdg-centos93-9.3-1.noarch.rpm -y
 sudo yum install postgresql93 postgresql93-devel postgresql93-libs postgresql93-server -y
 
@@ -41,31 +41,32 @@ listen_addresses = 'localhost'
 sudo /etc/init.d/postgresql-9.3 restart
 
 
-[gems]
+[instalar dependencias gems]
+
 sudo yum install gcc gcc-c++.x86_64 make automake autoconf curl-devel openssl-devel zlib-devel httpd-devel apr-devel apr-util-devel sqlite-devel ruby-rdoc ruby-devel
 sudo yum install rubygems libxslt-devel libxml2-devel.x86_64
 
 
 [atualizar para gem 1.4.2]
+
 wget http://production.cf.rubygems.org/rubygems/rubygems-1.4.2.tgz
 tar zxvf rubygems-1.4.2.tgz
 cd rubygems-1.4.2
 ruby setup.rb
 gem -v
 
-
 [ImageMagick]
+
 sudo yum install php-pear gcc ImageMagick ImageMagick-devel ImageMagick-perl
 
 [instalar gem Bundle]
+
 sudo gem install bundle --no-ri --no-rdoc
 
-
 [instalar nginx]
+
 cd /tmp
- 
 wget http://nginx.org/packages/centos/6/noarch/RPMS/nginx-release-centos-6-0.el6.ngx.noarch.rpm
- 
 sudo rpm -ivh nginx-release-centos-6-0.el6.ngx.noarch.rpm
 Instale o nginx
 
@@ -74,16 +75,18 @@ sudo chkconfig nginx on
 
 
 [instalar redmine 2.5.1]
-svn co http://svn.redmine.org/redmine/branches/2.5-stable redmine
 
+svn co http://svn.redmine.org/redmine/branches/2.5-stable redmine
 mv redmine-2.5 redmine
 
 [instalando gems dependentes]
+
 sudo chown -R colab:colab redmine
 cd /opt/redmine
 bundle install --without mysql sqlite
 
 [Configurar banco]
+
 sudo -u postgres psql
 
 --> criar usuario redmine
@@ -104,7 +107,8 @@ mv database.yml.example database.yml
 vim database.yml
 
 deixar descomentado apenas :
-====
+
+------
 production:
   adapter: postgresql
   database: redmine
@@ -112,24 +116,29 @@ production:
   username: redmine
   password: redmine
   encoding: utf8
-=====
+
+------
+
 
 [Populando Redmine]
+
 rake generate_secret_token
 RAILS_ENV=production rake db:migrate
 RAILS_ENV=production rake redmine:load_default_data 
 escolher pt-BR
 
 [Verificar se redmine esta funcionando]
+
 sudo rails s -e production -d 
 
 [configurar Unicorn]
+
 cd /opt/redmine
 mkdir pids   
 vim config/unicorn.rb
 
 Inserir o conteudo abaixo
-=============================
+-----------------------------
 
 # Set the working application directory
 # working_directory "/path/to/your/app"
@@ -155,19 +164,20 @@ worker_processes 2
 
 # Time-out
 timeout 30
-===============================
+
+-----------------------
 
 [Configurar NGINX de sites available]
 
 vim /etc/nginx/nginx.conf
 incluir a linha:
-========================
+------------------------
 http {
     ....
     include /etc/nginx/sites-available/*;
     ....
 }
-========================
+------------------------
 
 [Criar diretorio Sites Available]
 
@@ -175,7 +185,7 @@ sudo mkdir /etc/nginx/sites-available
 sudo vim /etc/nginx/sites-available/redmine.conf
 Colocar o conteudo abaixo:
 
-======
+------------------------
 
 upstream app {
     # Path to Unicorn SOCK file, as defined previously
@@ -203,8 +213,10 @@ server {
     keepalive_timeout 10;
 }  
 
-==========
+----------------
+
 [Reiniciando os serviços para o redmine funcionar]
+
 sudo service nginx restart
 sudo /etc/init.d/postgresql-9.3 restart
 
