@@ -54,4 +54,16 @@ Import Repository to SVN
 
   svn import /home/colab/repository_name file:////home/colab/repository_name -m ""
 
-  
+Run SVN server 
+
+.. code-block::
+
+  svnserve -d
+
+
+*NOTE:*
+
+  To commit, use 
+
+  svn co svn://localhost/
+

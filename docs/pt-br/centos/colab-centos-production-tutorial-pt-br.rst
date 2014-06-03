@@ -45,7 +45,7 @@ Siga todas as instruções a seguir na máquina destinada ao banco de dados Post
 
 *NOTE:*
 
-    Libere a porta xxxxxxx desta máquina para que máquina do colab possa ouvi-la
+    Libere a porta 5432 desta máquina para que máquina do colab possa ouvi-la
 
 Instale o pacote postgresql
 
@@ -284,14 +284,39 @@ Com este conteúdo dentro dele
 
     [ESC]:wq!
 
-xxxxxxxxxxxxxxxSupervisor para o Tracxxxxxxxxxxxxxx
-Rode o Trac com o comando
+Instale o supervisor
 
 .. code-block::
 
-    sudo tracd --port 5000 /opt/trac
+    yum install supervisor
 
-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+Modifique o arquivo de configuração
+
+.. code-block::
+
+    vim /etc/supervisord.conf
+
+Adicione a configuração
+
+.. code-block::
+
+    [program:trac]
+    command=/usr/sbin/tracd --port 5000 /opt/trac
+    directory=/opt/trac
+    user=colab
+    autostart=true
+    autorestart=false
+    redirect_stderr=True
+
+.. code-block::
+
+    [ESC] :wq
+
+Reinicie o supervisor
+
+.. code-block::
+
+    sudo service supervisord restart
 
 Instalação do Solr 4.6.1
 ------------------------
@@ -335,16 +360,33 @@ Remova as linhas do solrconfig.xml
 
     [ESC]wq!
 
-xxxxxxxxxxxxxxxSupervisor para o Solrxxxxxxxxxxxxxx
-Rode o Solr com o comando
+Modifique o arquivo de configuração para o Solr
 
 .. code-block::
 
-    cd /usr/share/solr/example/; sudo java -jar start.jar
+    vim /etc/supervisord.conf
 
-Acesse em: http://localhost:8983
-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+Adicione a configuração
 
+.. code-block::
+
+    [program:solr]
+    command=java -jar /usr/share/solr/example/start.jar
+    directory=/usr/share/solr/example/
+    user=colab
+    autostart=true
+    autorestart=false
+    redirect_stderr=True
+
+.. code-block::
+
+    [ESC] :wq
+
+Reinicie o supervisor
+
+.. code-block::
+
+    sudo service supervisord restart
 
 Instalação do Mailman 2.1
 -------------------------
@@ -746,7 +788,23 @@ Configure o git e o postgres
     sudo -u git cp config/database.yml.postgresql config/database.yml
     sudo -u git -H chmod o-rwx config/database.yml
 
-xxxxxxxxxxx configurar o database do gitlab xxxxxxxxxxxxxxxxx
+Configure as informações do banco de dados
+
+.. code-block::
+
+    vim config/database.yml
+
+Altere as linhas do banco de produção, trocando 127.0.0.1 pela máquina do banco.
+
+.. code-block::
+
+    production:
+        adapter: postgresql
+        encoding: unicode
+        database: gitlabhq_production
+        pool: 10
+        username: git
+        host: 127.0.0.1
 
 Configure o bundle
 
