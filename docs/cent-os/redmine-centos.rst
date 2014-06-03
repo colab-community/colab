@@ -167,54 +167,6 @@ timeout 30
 
 -----------------------
 
-[Configurar NGINX de sites available]
-
-vim /etc/nginx/nginx.conf
-incluir a linha:
-------------------------
-http {
-    ....
-    include /etc/nginx/sites-available/*;
-    ....
-}
-------------------------
-
-[Criar diretorio Sites Available]
-
-sudo mkdir /etc/nginx/sites-available
-sudo vim /etc/nginx/sites-available/redmine.conf
-Colocar o conteudo abaixo:
-
-------------------------
-
-upstream app {
-    # Path to Unicorn SOCK file, as defined previously
-    server unix:/tmp/unicorn.redmine.sock fail_timeout=0;
-}
-
-server {
-    listen 3004;
-    server_name localhost;
-
-    location /redmine {
-        alias /opt/redmine/public;
-        try_files $uri/index.html $uri.html $uri @app;
-    }
-
-    location @app {
-        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
-        proxy_set_header Host $http_host;
-        proxy_redirect off;
-        proxy_pass http://app;
-    }
-
-    error_page 500 502 503 504 /500.html;
-    client_max_body_size 4G;
-    keepalive_timeout 10;
-}  
-
-----------------
-
 [Editando ROUTES]
 
 
@@ -234,12 +186,11 @@ end
 end
 
 ---------------------------------
-
+[Adicionar link simbolico]
+ln -s /opt/redmine/public /opt/redmine/public/redmine
 
 
 [Reiniciando os serviços para o redmine funcionar]
-
-sudo service nginx restart
 sudo /etc/init.d/postgresql-9.3 restart
 
 [Iniciando Unicorn Para rodar o Redmine em Produção]
@@ -248,5 +199,12 @@ unicorn_rails -c /opt/redmine/config/unicorn.rb -D -E production
 
 
 [Instalando Plugin Remote_user]
+
 cd /opt/redmine/plugins
 git clone https://github.com/tdvsdv/single_auth.git
+
+[Edite a variavel do REMOTE_USER]
+Fazer login no redmine
+ir em plugins
+ir em configurações no plugin single_auth
+digite HTTP_REMOTE_USER
