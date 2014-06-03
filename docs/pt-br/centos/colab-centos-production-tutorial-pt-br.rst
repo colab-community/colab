@@ -24,6 +24,7 @@ Pré-requisitos
 --------------
 
 - O Cent OS 6.5 deve ter passado pelo processo de atualização com o: ``sudo yum update -y``
+- Todas as máquinas devem ter o usuário colab
 - O usuário colab das maquinas devem estar no arquivo ``sudoers``
 
 
@@ -52,7 +53,7 @@ Instale o pacote postgresql
 .. code-block::
 
     sudo yum localinstall http://yum.postgresql.org/9.3/redhat/rhel-6-x86_64/pgdg-centos93-9.3-1.noarch.rpm -y
-    sudo yum install postgresql93 postgresql93-devel postgresql93-libs postgresql93-server -y
+    sudo yum install postgresql93 postgresql93-devel postgresql93-libs postgresql93-server vim -y
 
 Inicie o banco de dados
 
@@ -168,7 +169,6 @@ Reinicie o postgresql
 
     sudo service postgresql-9.3 restart
 
-
 Instalação do Trac 0.12
 -----------------------
 
@@ -182,7 +182,7 @@ Instale as dependências
 
 .. code-block::
 
-    sudo yum install gcc python-devel python-setuptools -y
+    sudo yum install gcc python-devel python-setuptools vim -y
 
 Instale o pacote python para a utilização do postgres
 
@@ -288,15 +288,15 @@ Instale o supervisor
 
 .. code-block::
 
-    yum install supervisor
+    sudo yum install -y supervisor
 
 Modifique o arquivo de configuração
 
 .. code-block::
 
-    vim /etc/supervisord.conf
+    sudo vim /etc/supervisord.conf
 
-Adicione a configuração
+Adicione a configuração do trac no supervisor
 
 .. code-block::
 
@@ -334,6 +334,7 @@ Faça o download e descompacte o Solr no /tmp
     cd /tmp
     sudo wget http://archive.apache.org/dist/lucene/solr/4.6.1/solr-4.6.1.tgz
     sudo tar xvzf solr-4.6.1.tgz
+    sudo yum install -y vim
 
 Instale o Solr no diretório ``/usr/share``
 
@@ -360,13 +361,19 @@ Remova as linhas do solrconfig.xml
 
     [ESC]wq!
 
-Modifique o arquivo de configuração para o Solr
+Instale o supervisor
 
 .. code-block::
 
-    vim /etc/supervisord.conf
+    sudo yum install -y supervisor
 
-Adicione a configuração
+Modifique o arquivo de configuração do supervisor
+
+.. code-block::
+
+    sudo vim /etc/supervisord.conf
+
+Adicione a configuração para o Solr
 
 .. code-block::
 
@@ -409,7 +416,7 @@ Instale o nginx
 
 .. code-block::
 
-    sudo yum install nginx -y
+    sudo yum install nginx vim -y
 
 Faça o nginx iniciar com o sistema
 
@@ -601,7 +608,7 @@ Habilite o repositório do PUIAS
 
 .. code-block::
 
-    sudo yum -y install yum-utils
+    sudo yum -y install yum-utils vim
     sudo yum-config-manager --enable epel --enable PUIAS_6_computational
 
 Atualize os pacotes necessários e instale os que faltam
@@ -794,7 +801,7 @@ Configure as informações do banco de dados
 
     vim config/database.yml
 
-Altere as linhas do banco de produção, trocando 127.0.0.1 pela máquina do banco.
+Altere as linhas do banco de produção, trocando 127.0.0.1 pela máquina do postgres.
 
 .. code-block::
 
@@ -871,5 +878,524 @@ Renicie o gitlab
 .. code-block::
 
     sudo service gitlab restart
+
+Configurando o LDAP do Gitlab
+
+Como root edit o arquivo do gitlab.yml para adicionar o LDAP
+
+.. code-block::
+
+    sudo su
+    vim /home/git/gilab/config/gitlab.yml
+
+Deixe as opções do LDAP como as opções abaixo, mas no campo do host, ao invés de localhost coloque o IP da máquina do LDAP
+
+.. code-block::
+
+  ldap:
+    enabled: true
+    host: 'localhost'
+    base: 'dc=colab,dc=com'
+    port: 389
+    uid: 'uid'
+    method: 'plain'
+    bind_dn: 'cn=admin,dc=colab,dc=com'
+    password: 'ldapcolab'
+    allow_username_or_email_login: true
+
+.. code-block::
+
+    [ESC]:wq!
+
+Reinicie o Gitlab service
+
+.. code-block::
+
+    sudo service gitlab restart
+
+
+Instalação do Redmine 2.5
+-------------------------
+
+Siga os passo na máquina destinada ao Redmine
+
+*NOTE:*
+
+    Libere a porta 9080 desta máquina para que máquina do colab possa ouvi-la
+
+xxxxxxxxxxxEm Revisãoxxxxxxxxxxx
+
+Instalação do LDAP 2.4
+----------------------
+
+Siga os passo na máquina destinada ao LDAP
+
+*NOTE:*
+
+    Libere a porta 389 desta máquina para que máquina do colab possa ouvi-la
+
+Instale o openldap client e server
+
+.. code-block::
+
+    sudo yum install openldap-servers openldap-clients vim -y
+    sudo yum install sssd perl-LDAP.noarch -y
+
+Copie o arquivo de configuração do banco de dados
+
+.. code-block::
+
+    sudo cp /usr/share/openldap-servers/DB_CONFIG.example /var/lib/ldap/DB_CONFIG
+
+Mude as permissões do diretório ``/var/lib/ldap`` e copie o arquivo ``slapd.d``
+
+.. code-block::
+
+    sudo chown -R ldap:ldap /var/lib/ldap
+    cd /etc/openldap
+    sudo mv slapd.d slapd.d.original
+
+Gere a senha ssha para o ldap, a senha deve ser ``ldapcolab``
+
+.. code-block::
+
+    sudo slappasswd
+
+Este processo irá gerar uma senha ssha parecida com esta ``{SSHA}aCnD3GgAJiDryZY0PNxVwdPXyUz45lzd``, mas não será igual. Guarde a senha gerada, pois será necessária mais tarde. Incie o servidor do LDAP.
+
+.. code-block::
+
+    sudo service slapd start
+    sudo chkconfig slapd on
+
+Copie o arquivo ``ldap.conf``
+
+.. code-block::
+
+    sudo mv ldap.conf ldap.conf.original
+    sudo cp ldap.conf.original ldap.conf
+
+Crie o ``slapd.conf``
+
+.. code-block::
+
+    sudo vim /etc/openldap/slapd.conf
+
+Popule o arquivo com o conteúdo abaixo, e mude o valor do campo ``rootpw`` para a chave ssha gerada a alguns passos atrás
+
+.. code-block::
+
+    #
+    # See slapd.conf(5) for details on configuration options.
+    # This file should NOT be world readable.
+    #
+    include     /etc/openldap/schema/core.schema
+    include     /etc/openldap/schema/cosine.schema
+    include     /etc/openldap/schema/inetorgperson.schema
+    include     /etc/openldap/schema/nis.schema
+
+    # Added for policy
+    include     /etc/openldap/schema/ppolicy.schema
+
+    # Allow LDAPv2 client connections.  This is NOT the default.
+    allow bind_v2
+
+    # Do not enable referrals until AFTER you have a working directory
+    # service AND an understanding of referrals.
+    #referral   ldap://root.openldap.org
+
+    pidfile     /var/run/openldap/slapd.pid
+    argsfile    /var/run/openldap/slapd.args
+
+    # Load dynamic backend modules:
+    # modulepath    /usr/lib64/openldap
+
+    # Modules available in openldap-servers-overlays RPM package
+    # Module syncprov.la is now statically linked with slapd and there
+    # is no need to load it here
+    # moduleload accesslog.la
+    # moduleload auditlog.la
+    # moduleload denyop.la
+    # moduleload dyngroup.la
+    # moduleload dynlist.la
+    # moduleload lastmod.la
+    # moduleload pcache.la
+
+    moduleload ppolicy.la
+
+    # moduleload refint.la
+    # moduleload retcode.la
+    # moduleload rwm.la
+    # moduleload smbk5pwd.la
+    # moduleload translucent.la
+    # moduleload unique.la
+    # moduleload valsort.la
+
+    # modules available in openldap-servers-sql RPM package:
+    # moduleload back_sql.la
+
+    # The next three lines allow use of TLS for encrypting connections using a
+    # dummy test certificate which you can generate by changing to
+    # /etc/pki/tls/certs, running "make slapd.pem", and fixing permissions on
+    # slapd.pem so that the ldap user or group can read it.  Your client software
+    # may balk at self-signed certificates, however.
+    # TLSCACertificateFile /etc/pki/tls/certs/ca-bundle.crt
+    # TLSCertificateFile /etc/pki/tls/certs/slapd.pem
+    # TLSCertificateKeyFile /etc/pki/tls/certs/slapd.pem
+
+    # Sample security restrictions
+    #   Require integrity protection (prevent hijacking)
+    #   Require 112-bit (3DES or better) encryption for updates
+    #   Require 63-bit encryption for simple bind
+    # security ssf=1 update_ssf=112 simple_bind=64
+
+    # Sample access control policy:
+    #   Root DSE: allow anyone to read it
+    #   Subschema (sub)entry DSE: allow anyone to read it
+    #   Other DSEs:
+    #       Allow self write access
+    #       Allow authenticated users read access
+    #       Allow anonymous users to authenticate
+    #   Directives needed to implement policy:
+    # access to dn.base="" by * read
+    # access to dn.base="cn=Subschema" by * read
+    # access to *
+    #   by self write
+    #   by users read
+    #   by anonymous auth
+    #
+    # if no access controls are present, the default policy
+    # allows anyone and everyone to read anything but restricts
+    # updates to rootdn.  (e.g., "access to * by * read")
+    #
+    # rootdn can always read and write EVERYTHING!
+
+    #######################################################################
+    # ldbm and/or bdb database definitions
+    #######################################################################
+
+    database    bdb
+    suffix      "dc=colab,dc=com"
+    rootdn      "cn=admin,dc=colab,dc=com"
+    rootpw      {SSHA}subistitua aqui
+
+    # PPolicy Configuration
+    overlay ppolicy
+    ppolicy_default "cn=default,ou=policies,dc=colab,dc=com"
+    ppolicy_use_lockout
+    ppolicy_hash_cleartext
+
+
+
+    # The database directory MUST exist prior to running slapd AND
+    # should only be accessible by the slapd and slap tools.
+    # Mode 700 recommended.
+    directory   /var/lib/ldap
+
+    # Indices to maintain for this database
+    index objectClass                       eq,pres
+    index ou,cn,mail,surname,givenname      eq,pres,sub
+    index uidNumber,gidNumber,loginShell    eq,pres
+    index uid,memberUid                     eq,pres,sub
+    index nisMapName,nisMapEntry            eq,pres,sub
+
+.. code-block::
+
+    [ESC]:wq!
+
+Crie o arquivo ``ppolicy.ldif``
+
+.. code-block::
+
+    sudo vim /etc/openldap/ppolicy.ldif
+
+Insira o conteúdo abaixo
+
+.. code-block::
+
+    dn: ou = policies,dc=colab,dc=com
+    objectClass: organizationalUnit
+    objectClass: top
+    ou: policies
+
+    # default, policies, example.com
+    dn: cn=default,ou=policies,dc=colab,dc=com
+    objectClass: top
+    objectClass: pwdPolicy
+    objectClass: person
+    cn: default
+    sn: dummy value
+    pwdAttribute: userPassword
+    pwdMaxAge: 7516800
+    pwdExpireWarning: 14482463
+    pwdMinLength: 2
+    pwdMaxFailure: 10
+    pwdLockout: TRUE
+    pwdLockoutDuration: 60
+    pwdMustChange: FALSE
+    pwdAllowUserChange: FALSE
+    pwdSafeModify: FALSE
+
+.. code-block::
+
+    [ESC]:wq!
+
+Incie o LDAP Server
+
+.. code-block::
+
+    sudo service slapd start
+
+Crie o ``base.ldif``
+
+.. code-block::
+
+    mkdir /tmp/ldap
+    cd /tmp/ldap
+    sudo vim base.ldif
+
+Insira o texto abaixo
+
+.. code-block::
+
+    dn: dc=colab,dc=com
+    objectClass: dcObject
+    objectClass: organization
+    dc: colab
+    o: Colab
+    description: Colab
+
+    dn: cn=admin,dc=colab,dc=com
+    objectClass: organizationalRole
+    cn: Admin
+    description: System Manager
+
+    dn: ou=users,dc=colab,dc=com
+    objectClass: organizationalUnit
+    ou: users
+
+    dn: ou=oldusers,dc=colab,dc=com
+    objectClass: organizationalUnit
+    ou: oldusers
+
+.. code-block::
+
+    [ESC]:wq!
+
+Gere o esquema do LDAP usando o base.ldif
+
+.. code-block::
+
+    ldapadd -x -D "cn=admin,dc=colab,dc=com" -w ldapcolab -f /tmp/ldap/base.ldif
+
+
+Instalação do Colab
+-------------------
+
+Siga os passo na máquina destinada ao Colab
+
+*NOTE:*
+
+    Libere um acesso externo para esta máquina, pois o site do colab será acessado por esta máquina.
+
+Instale as ferramentas de desenvolvimento do python e algumas dependências para compilar o python
+
+.. code-block::
+
+    sudo yum groupinstall "Development tools" -y
+    sudo yum install zlib-devel bzip2-devel openssl-devel ncurses-devel libxslt-devel vim -y
+
+Faça o download e compile o Python 2.7
+
+.. code-block::
+
+    cd /tmp
+    sudo wget --no-check-certificate https://www.python.org/ftp/python/2.7.6/Python-2.7.6.tar.xz
+    sudo tar xf Python-2.7.6.tar.xz
+    cd Python-2.7.6
+    sudo ./configure --prefix=/usr/local
+    sudo make
+
+Instale o python 2.7 como um python alternativo
+
+.. code-block::
+
+    sudo make altinstall
+
+Atualize a variável PATH para executar o python2.7
+
+.. code-block::
+
+    sudo su
+    echo "export PATH=$PATH:/usr/local/bin/" >> ~/.bashrc
+    source ~/.bashrc
+    exit
+
+Instale o easy_install para o python 2.7
+
+.. code-block::
+
+    cd /tmp
+    sudo wget https://bitbucket.org/pypa/setuptools/raw/bootstrap/ez_setup.py
+    sudo /usr/local/bin/python2.7 ez_setup.py
+
+Instale o pip 2.7
+
+.. code-block::
+
+    sudo /usr/local/bin/easy_install-2.7 pip
+
+Instale alguns pacotes adicionais do python
+
+.. code-block::
+
+    sudo yum remove libevent -y
+    sudo yum install mercurial libevent-devel python-devel -y
+
+Edite o arquivo sudores para executar o ``python2.7`` como sudo
+
+.. code-block::
+
+    sudo vim /etc/sudoers
+
+Mude a linha
+
+.. code-block::
+
+    Defaults    secure_path = /sbin:/bin:/usr/sbin:/usr/bin
+
+para
+
+.. code-block::
+
+    Defaults    secure_path = /sbin:/bin:/usr/sbin:/usr/bin:/usr/local/bin/
+
+.. code-block::
+
+    [ESC]:wq!
+
+Instalando o Django 1.6
+
+Instale o django e o uwsgi
+
+.. code-block::
+
+    sudo pip2.7 install django
+    sudo pip2.7 install uwsgi
+
+Instale o Colab
+
+Instale o git e clone o repositório do colab
+
+.. code-block::
+
+    sudo yum install git -y
+    cd /opt
+    sudo git clone https://github.com/colab-community/colab.git
+
+Instale os pré-requisitos do colab
+
+.. code-block::
+
+    sudo pip2.7 install mimeparse
+    sudo pip2.7 install -r /opt/colab/requirements.txt
+
+Crie o arquivo local_settings na pasta src/colab
+
+.. code-block::
+
+    sudo cp /opt/colab/src/colab/local_settings-dev.py /opt/colab/src/colab/local_settings.py
+
+Edite o arquivo local_settings criado, nele deverão ser alterados os IPs das máquinas utilizadas
+
+.. code-block::
+
+    sudo vim /opt/colab/src/colab/local_settings.py
+
+Troque os IPs das seguintes linhas
+
+.. code-block::
+
+    COLAB_TRAC_URL = 'http://localhost:5000/trac/'
+    COLAB_CI_URL = 'http://localhost:8080/ci/'
+    COLAB_GITLAB_URL = 'http://localhost:8090/gitlab/'
+    COLAB_REDMINE_URL = 'http://localhost:9080/redmine/'
+
+xxxxxxxxxxxxx Arrumar variáveis de conexão com o banco no local settings xxxxxxxxxxxxxxxxxx
+xxxxxxxxxxxxx como é feita conexão com o solr? xxxxxxxxxxxxxxxxxx
+
+Cada localhost deve ser subistituido para o IP da máquinda da ferramenta em questão, no fim salve e saia.
+
+.. code-block::
+
+    [ESC]:wq!
+
+
+Gere o esquema do solr como schema.xml
+
+.. code-block::
+
+    cd /opt/colab/src
+    sudo su
+    python2.7 manage.py build_solr_schema > schema.xml
+    exit
+
+Edite o schema e mude o ``stopwords_en.txt`` para ``lang/stopwords_en.txt``
+
+.. code-block::
+
+    sudo vim schema.xml
+
+.. code-block::
+
+    [ESC]:%s/stopwords_en.txt/lang\/stopwords_en.txt
+    [ESC]:wq!
+
+
+Copie o schema para a máquina do solr
+
+.. code-block::
+
+    python2.7 manage.py build_solr_schema > /usr/share/solr/example/solr/collection1/conf/schema.xml
+    xxxxxxxxxxxxx Como copiar arquivos de uma máquina pra outra? xxxxxxxxxxxxxxxxxxx
+
+
+Na máquina do coalb, sincronize e migre o banco de dados.
+
+.. code-block::
+
+    cd /opt/colab/src
+    python2.7 manage.py syncdb
+    python2.7 manage.py migrate
+
+Atualize o index com o solr, para executar esta ação o solr já deve estar funcionando na máquina voltada para o Solr
+
+.. code-block::
+
+        cd /opt/colab/src
+        python2.7 manage.py update_index
+
+Importe os e-mails do mailman
+
+.. code-block::
+
+    sudo python2.7 /opt/colab/src/manage.py import_emails
+
+Crie os Cronjobs para rodar em background a importação de email e a atualização do index
+
+.. code-block::
+
+    crontab -e
+
+Adicione as seguintes linhas no arquivo
+
+.. code-block::
+
+    5 * * * * /usr/bin/python2.7 /opt/colab/src/manage.py import_emails
+    45 * * * * /usr/bin/python2.7 /opt/colab/src/manage.py update_index
+
+.. code-block::
+
+    [ESC]:wq!
 
 
