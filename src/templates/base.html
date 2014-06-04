@@ -11,9 +11,9 @@
       {% endif %}
     {% endblock %}
 
-    <title>{% block title %}Colab{% endblock %} - Colab</title>
+    <title>{% block title %}Software Público{% endblock %} -Software Público</title>
 
-    <link rel="shortcut icon" type="image/x-icon" href="{{ STATIC_URL }}img/interlegis.ico">
+   <!-- <link rel="shortcut icon" type="image/x-icon" href="{{ STATIC_URL }}img/interlegis.ico"> removido no modelo colab 01 --> 
 
     <link rel="stylesheet" href="{{ STATIC_URL }}third-party/bootstrap/css/bootstrap.min.css" type="text/css" media="screen, projection" />
 
@@ -37,18 +37,157 @@
     {% block head_js %}{% endblock %}
     {% block head_css %}{% endblock %}
 
+<!-- chamando nossos arquivos Colab01-->
+	<link rel="stylesheet" href="{{ STATIC_URL }}bootstrap/css/bootstrap.min.css" type="text/css" media="screen" />
+    
+        <link rel="stylesheet" href="{{ STATIC_URL }}css/template-branco.css" type="text/css" media="screen" />
+
+<!--Fim arquivos colab 01-->
+
   {% endblock %}
+
+<!-- chamada de fontes local -->
+<!-- <link rel="stylesheet" href="css/fontes.css" type='text/css'-->
+	<!-- chamada de fontes externas -->
+	<link href='http://fonts.googleapis.com/css?family=Open+Sans:400italic,400,600,800,700' rel='stylesheet' type='text/css' />
+	<link rel="stylesheet" href="{{ STATIC_URL }}jplayer/skin/portalpadrao01/jplayer.css" type='text/css'/>	
+
   </head>
 
   <body class="container">
+
+	<a class="hide" id="topo" href="#accessibility">Ir direto para menu de acessibilidade.</a>
+	<noscript>
+	  <div class="error minor-font">
+        Seu navegador de internet está sem suporte à JavaScript. Por esse motivo algumas funcionalidades do site podem não estar acessíveis.
+      </div>
+	</noscript>
+	<!--[if lt IE 7]><center><strong>Atenção, a versão de seu navegador não é compatível com este sítio. Atualize seu navegador.</strong></center><![endif]-->
+	<!-- barra do governo -->
+	<div id="barra-brasil">
+		<a href="http://brasil.gov.br" title="Acesse para conhecer todos os serviços e informações do Governo Brasileiro na Internet.">Portal do Governo Brasileiro</a>		
+    </div>
+    <!-- fim barra do governo -->
+
     {% browserid_info %}
-ola
+
     {% block navbar %}
-    <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
-      <div class="container">
+
+    <nav class="navbar navbar-default"  role="navigation"> <!--remove navbar-fixed-top-->
+
+<!--barra de navegacao modelo colab01-->
+<header>
+<div class="container2">
+	<div class="row-fluid accessibility-language-actions-container">
+		<div class="span6 accessibility-container">
+			<ul id="accessibility">
+				<li>
+				<a accesskey="1" href="#content" id="link-conteudo">
+				Ir para o conte&uacute;do <span>1</span>
+				</a>
+				</li>
+				<li>
+				<a accesskey="2" href="#navigation" id="link-navegacao">
+				Ir para o menu <span>2</span>
+				</a>
+				</li>
+				<li>
+				<a accesskey="3" href="#portal-searchbox" id="link-buscar">
+				Ir para a busca <span>3</span>
+				</a>
+				</li>
+				<li>
+				<a accesskey="4" href="#footer" id="link-rodape">
+				Ir para o rodap&eacute; <span>4</span>
+				</a>
+				</li>
+			</ul>
+		</div>
+
+		<div class="span6 language-and-actions-container">
+			<ul id="language" class="pull-right">
+				<li class="language-en">
+				<a href="#">ENGLISH</a>
+				</li>
+				<li class="language-es">
+				<a href="#">ESPAÑOL</a>
+				</li>
+			</ul>
+			<ul id="portal-siteactions" class="pull-right">
+				<li>
+				<a accesskey="5" href="/interna-acessibilidade.html">Acessibilidade</a>
+				</li>
+				<li>
+				<a accesskey="6" href="#" class="toggle-contraste">Alto Contraste</a>
+				</li>
+				<li>
+				<a accesskey="7" href="#">Mapa do Site</a>
+				</li>
+			</ul>
+		</div>
+		<!-- fim div.span6 -->
+	</div>
+	<!-- fim .row-fluid -->
+	<div class="row-fluid">
+		<div id="logo" class="span8">
+			<!-- <div id="logo" class="span8 big"> <div id="logo" class="span8 small"> -->
+			<a href="/" title="Portal do Software Público">
+			<img src="{{ STATIC_URL }}images/logotipo.png"/>
+			</a>
+		</div>
+		<!-- fim .span8 -->
+		<div class="span4">
+			<div id="portal-searchbox" class="row">
+				<form action="{% url 'haystack_search' %}" method="GET" id="search-form" class="navbar-form navbar-right hidden-xs hidden-sm" role="search">
+					<fieldset>
+						<legend class="hide">Busca</legend>
+						<h2 class="hidden">Buscar no portal</h2>
+						<div class="input-append">
+							<div class="form-group">
+								<label class="sr-only" for="header-searchbox">{% trans 'Search here...' %}</label>
+								<input name="q" id="header-searchbox" class="searchField" value="{{ request.GET.q }}" type="search" placeholder="{% trans 'Search here...' %}"/>
+							</div>
+							<button type="submit" class="btn searchButton"><span class="hide">Buscar</span><i class="icon-search"></i></button>
+						</div>
+					</fieldset>
+				</form>
+			</div>
+
+<!-- fim div#portal-searchbox.row -->
+
+			<div id="social-icons" class="row">
+				<h2 class="hidden">Redes Sociais</h2>
+				<ul class="pull-right">
+					<li class="portalredes-item"><a title="Twitter" href="https://twitter.com/twitter">
+					<i class="icon-twitter-sign"><span>Twitter</span></i></a>
+					</li>
+					<li class="portalredes-item"><a title="YouTube" href="http://youtube.com/youtube">
+					<i class="icon-youtube"><span>Youtube</span></i></a>
+					</li>
+					<li class="portalredes-item"><a title="Facebook" href="http://facebook.com/facebook">
+					<i class="icon-facebook-sign"><span>Facebook</span></i></a>
+					</li>
+					<li class="portalredes-item"><a title="Flickr" href="http://flickr.com/flickr">
+					<i class="icon-flickr"><span>Flickr</span></i></a>
+					</li>
+				</ul>
+			</div>
+			<!-- fim div#social-icons.row -->
+		</div>
+		<!-- fim .span4 -->
+	</div>
+	<!-- fim .row-fluid -->
+</div>
+<!-- fim div.container2 -->
+<!-- fim .sobre -->
+<!--fim barra de navegacao modelo colab01-->
+    
+
+	<nav class="navbar navbar-default"  role="navigation"> <!--remove navbar-fixed-top-->
+	<div class="container">
         <div class="navbar-header">
 
-          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-main">
+        <!--  <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-main">
             <span class="sr-only">Toggle navigation</span>
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
@@ -56,7 +195,7 @@ ola
             <span class="icon-bar"></span>
           </button>
           <a class="navbar-brand" href="/"><img alt="Colab" src="/static/img/logo_nav.png"></a>
-        </div>
+        </div> -->
 
         <div class="collapse navbar-collapse navbar-main">
           <ul class="nav navbar-nav">
@@ -142,14 +281,14 @@ ola
             {% endif %}
           </ul>
 
-          <form action="{% url 'haystack_search' %}" method="GET" id="search-form" class="navbar-form navbar-right hidden-xs hidden-sm" role="search">
-            <div class="form-group">
+      <!-- <form action="{% url 'haystack_search' %}" method="GET" id="search-form" class="navbar-form navbar-right hidden-xs hidden-sm" role="search">
+              <div class="form-group">
               <label class="sr-only" for="header-searchbox">{% trans 'Search here...' %}</label>
               <input name="q" id="header-searchbox"
                      class="form-control" value="{{ request.GET.q }}"
                      type="search" placeholder="{% trans 'Search here...' %}" />
-            </div>
-            <button type="submit" class="btn btn-default"><span class="glyphicon glyphicon-search"></span></button>
+            </div> 
+            <button type="submit" class="btn btn-default"><span class="glyphicon glyphicon-search"></span></button> -->
           </form>
         </div>
       </div>
@@ -209,6 +348,130 @@ ola
 
   {% include "tz/set_utc_offset.html" %}
   {% browserid_js %}
+
+<!-- footer colab01 -->
+<footer>
+    		<div class="footer-atalhos">
+    			<div class="container2">
+    				<div class="pull-right voltar-ao-topo"><a href="#portal-siteactions"><i class="icon-chevron-up"></i>&nbsp;Voltar para o topo</a></div>
+    			</div>
+    		</div>
+    		<div class="container2 container-menus">
+    			<div id="footer" class="row footer-menus">
+    				<span class="hide">Início da navegação de rodapé</span>
+    				<div class="span3">
+						<nav class="row assuntos nav">
+							<h2>Assuntos</h2>
+							<ul>
+								<li><a href="#" title="Editoria A">Editoria A</a></li>
+								<li><a href="#" title="Editoria B">Editoria B</a></li>
+								<li><a href="#" title="Editoria C">Editoria C</a></li>								
+							</ul>
+						</nav>    					
+    				</div>
+					<div class="span3">
+						<nav class="row servicos nav">
+							<h2>Serviços</h2>
+							<ul>
+								<li class="portalservicos-item">
+									<a title="Perguntas frequentes" href="#">Perguntas frequentes</a>
+								</li>
+								<li class="portalservicos-item">
+									<a title="Contato" href="#">Contato</a>
+								</li>
+								<li class="portalservicos-item">
+									<a title="Serviços da [Denominação]" href="#">Serviços da [Denominação]</a>
+								</li>
+								<li class="portalservicos-item">
+									<a title="Dados abertos" href="#">Dados abertos</a>
+								</li>
+								<li class="portalservicos-item">
+									<a title="Área de imprensa" href="#">Área de imprensa</a>
+								</li>
+							</ul>
+						</nav>							
+					</div>
+					<div class="span3">
+						<nav class="row redes-sociais nav">
+							<h2>Redes Sociais</h2>
+							<ul>
+								<li class="portalredes-item"><a title="Twitter" href="https://twitter.com/twitter">
+	    							Twitter</a>
+	    						</li>
+	    						<li class="portalredes-item"><a title="YouTube" href="http://youtube.com/youtube">
+	    							Youtube</a>
+	    						</li>
+	    						<li class="portalredes-item"><a title="Facebook" href="http://facebook.com/facebook">
+	    							Facebook</a>
+	    						</li>
+	    						<li class="portalredes-item"><a title="Flickr" href="http://flickr.com/flickr">
+	    							Flickr</a>
+	    						</li>
+							</ul>
+						</nav>						
+					</div>
+					<div class="span3">
+						<nav class="row rss nav">
+							<h2>RSS</h2>
+							<ul>
+								<li><a href="#" title="O que é?">O que é?</a></li>
+								<li><a href="#" title="Assine">Assine</a></li>
+							</ul>
+						</nav>
+						<nav class="row sobre nav">
+							<h2>Navegação</h2>
+							<ul>
+								<li><a href="#">Acessibilidade</a></li>
+								<li><a href="#">Mapa do site</a></li>
+								<li><a href="#">Versión en Español</a></li>
+								<li><a href="#">English version</a></li>
+							</ul>
+						</nav>
+					</div>
+					<span class="hide">Fim da navegação de rodapé</span>					
+    			</div>
+    			<!-- fim .row -->
+    		</div>
+    		<!-- fim .container2 -->
+			<div class="footer-logos">
+				<div class="container2">
+					<a href="http://www.acessoainformacao.gov.br/" class="logo-acesso pull-left"><img src="{{ STATIC_URL }}images/acesso-a-informacao.png" alt="Acesso a Informação"></a>
+					<!-- separador para fins de acessibilidade --><span class="hide">&nbsp;</span><!-- fim separador para fins de acessibilidade -->
+					<a href="http://www.brasil.gov.br/" class="brasil pull-right"><img src="{{ STATIC_URL }}images/brasil.png" alt="Brasil - Governo Federal"></a>
+				</div>				
+			</div>		
+			</div>
+    		<div class="footer-atalhos visible-phone">
+    			<div class="container2">
+    				<span class="hide">Fim do conteúdo da página</span>
+    				<div class="pull-right voltar-ao-topo"><a href="#portal-siteactions"><i class="icon-chevron-up"></i>&nbsp;Voltar para o topo</a></div>
+    			</div>
+    		</div>
+    	</footer>		
+    </div>
+</div>
+
+	<!-- fim div#wrapper -->	
+	<!-- scripts principais -->	
+	<script src="{{ STATIC_URL }}js/jquery.min.js" type="text/javascript"></script><noscript>&nbsp;<!-- item para fins de acessibilidade --></noscript>
+	<script src="{{ STATIC_URL }}js/jquery-noconflict.js" type="text/javascript"></script><noscript>&nbsp;<!-- item para fins de acessibilidade --></noscript>
+	<script src="{{ STATIC_URL }}bootstrap/js/bootstrap.min.js" type="text/javascript"></script><noscript>&nbsp;<!-- item para fins de acessibilidade --></noscript>
+	<script src="{{ STATIC_URL }}js/jquery.cookie.js" type="text/javascript"></script><noscript>&nbsp;<!-- item para fins de acessibilidade --></noscript>
+	<script src="{{ STATIC_URL }}js/template.js" type="text/javascript"></script><noscript>&nbsp;<!-- item para fins de acessibilidade --></noscript>
+	<script src="{{ STATIC_URL }}jplayer/js/jquery.jplayer.min.js" type="text/javascript"></script><noscript>&nbsp;<!-- item para fins de acessibilidade --></noscript>
+	<script type="text/javascript">
+	//<![CDATA[
+	jQuery(document).ready(function(){
+		urls = {mp3:"http://tv1-lnx-04.grupotv1.com/portalmodelo/conteudos-de-marcacao/audio-1-titulo-do-audio-1/audio-1-nome-do-audio.mp3"};	
+		playAudio("#jquery_jplayer_1", urls, "mp3", "jplayer/");
+	});
+	//]]>
+	</script><noscript>&nbsp;<!-- item para fins de acessibilidade --></noscript>
+	<!-- Script do portal Brasil deve ficar preferencialmente no rodape para nao atrasar o carregamento da pagina principal -->
+	<script src="http://barra.brasil.gov.br/barra.js?cor=verde" type="text/javascript"></script><noscript>&nbsp;<!-- item para fins de acessibilidade --></noscript>
+
+
+<!--fim footer colab01-->
 
   {% block footer_js %}{% endblock %}
   </body>
