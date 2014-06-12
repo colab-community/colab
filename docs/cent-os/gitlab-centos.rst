@@ -334,7 +334,14 @@ Compile the asstes, to development change the env to ``RAILS_ENV=development``
 .. code-block::
 
     sudo -u git -H /usr/local/bin/bundle exec rake assets:precompile RAILS_ENV=production
- 
+
+Editing ``window.location.href`` in app/views/devise/sessions/_new_env.html.haml:
+
+.. code-block::
+
+    %script
+        window.location.href = '/gitlab/users/auth/env'
+
 Change group permissions
 
     chmod g+rx /home/git/
