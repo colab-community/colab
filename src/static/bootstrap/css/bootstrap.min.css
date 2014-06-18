@@ -2406,6 +2406,17 @@ button.btn.btn-mini,input[type="submit"].btn.btn-mini {
 	*position:relative;
 	*z-index:2;
 }
+
+/*Criei aqui para nao modificar o bootstrap do Colab*/
+.navbar-default {
+	color:#000000;	
+	background-color:#e9ebec;
+	border-color:none;
+	min-height:30px;
+	border: none;
+}
+/*FIM -  Criei aqui para nao modificar o bootstrap do Colab*/
+}
 .navbar-inner {
 	min-height:40px;
 	padding-left:20px;
@@ -2457,7 +2468,7 @@ button.btn.btn-mini,input[type="submit"].btn.btn-mini {
 }
 .navbar-text {
 	margin-bottom:0;
-	line-height:40px;
+	/*line-height:30px;*40*/
 	color:#777777;
 }
 .navbar-link {
@@ -2576,7 +2587,7 @@ button.btn.btn-mini,input[type="submit"].btn.btn-mini {
 	position:relative;
 	left:0;
 	display:block;
-	float:left;
+	/*float:left;*/
 	margin:0 10px 0 0;
 }
 .navbar .nav.pull-right {
@@ -2597,8 +2608,8 @@ button.btn.btn-mini,input[type="submit"].btn.btn-mini {
 	margin-top:8px;
 }
 .navbar .nav>li>a:focus,.navbar .nav>li>a:hover {
-	background-color:transparent;
-	color:#333333;
+	background-color:#4e5154;
+	color:#ffffff;/*#333333*/
 	text-decoration:none;
 }
 .navbar .nav>.active>a,.navbar .nav>.active>a:hover,.navbar .nav>.active>a:focus {
@@ -2691,8 +2702,8 @@ button.btn.btn-mini,input[type="submit"].btn.btn-mini {
 	top:auto;
 }
 .navbar .nav li.dropdown>a:hover .caret,.navbar .nav li.dropdown>a:focus .caret {
-	border-top-color:#333333;
-	border-bottom-color:#333333;
+	border-top-color:#4e5154; /*#333333;*/
+	border-bottom-color:#4e5154; /*#333333;*/
 }
 .navbar .nav li.dropdown.open>.dropdown-toggle,.navbar .nav li.dropdown.active>.dropdown-toggle,.navbar .nav li.dropdown.open.active>.dropdown-toggle {
 	background-color:#e5e5e5;

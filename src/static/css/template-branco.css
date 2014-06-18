@@ -124,7 +124,7 @@ header #accessibility li {
 	margin:0 10px 0 0
 }
 header #accessibility a {
-	color:#0a5517;
+	color:#7E7F83; /*#0a5517;*/
 	font-size: .7em
 }
 header #accessibility a span {
@@ -215,8 +215,7 @@ margin: 22px 0 0 0
 }
 header #portal-searchbox input.searchField {
 font-size:12px;
-width:380px;
-/*Tamanho do campo de busca*/
+width:400px; /*Tamanho do campo de busca*/
 background-color:#E9EBEE;
 }
 header #portal-searchbox input.searchField:focus {
@@ -633,14 +632,14 @@ padding:46px 0 0 0
 footer .row {
 margin-bottom:13px
 }
-					footer nav {
+footer nav {
 border-left:1px dotted #dbdbc8;
 padding:0 5px 0 10px
 }
-					footer nav h2 {
+footer nav h2 {
 font-size:1.3em;
 font-weight:bold;
-color:#708090;
+color:#3b3f44; /*#708090;*/
 line-height:1.3em;
 padding: 5px 0 5px 0
 }

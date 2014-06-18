@@ -260,7 +260,7 @@
               <li>{% browserid_login text=login_text %}</li>
             {% else %}
               <li id="user-menu" class="dropdown">
-                <a href="#" class="dropdown-toggle user" data-toggle="dropdown">{% gravatar user.email 40 %} <b class="caret"></b>&nbsp;&nbsp;</a>
+                <a href="#" class="dropdown-toggle user" data-toggle="dropdown">{% gravatar user.email 25 %} <b class="caret"></b>&nbsp;&nbsp;</a>
                 <ul class="dropdown-menu" role="menu">
                   <li>
                     <div class="wrapper">
@@ -435,8 +435,10 @@
     		<!-- fim .container2 -->
 			<div class="footer-logos">
 				<div class="container2">
-					<a href="http://www.acessoainformacao.gov.br/" class="logo-acesso pull-left"><img src="{{ STATIC_URL }}images/acesso-a-informacao.png" alt="Acesso a Informação"></a>
-					<!-- separador para fins de acessibilidade --><span class="hide">&nbsp;</span><!-- fim separador para fins de acessibilidade -->
+	<a href="http://www.acessoainformacao.gov.br/" class="logo-acesso pull-left"><img src="{{ STATIC_URL }}images/acesso-a-informacao.png" alt="Acesso a Informação"></a>
+	<!-- separador para fins de acessibilidade -->
+	<span class="hide">&nbsp;</span>
+	<!-- fim separador para fins de acessibilidade -->
 					<a href="http://www.brasil.gov.br/" class="brasil pull-right"><img src="{{ STATIC_URL }}images/brasil.png" alt="Brasil - Governo Federal"></a>
 				</div>				
 			</div>		
@@ -469,7 +471,6 @@
 	</script><noscript>&nbsp;<!-- item para fins de acessibilidade --></noscript>
 	<!-- Script do portal Brasil deve ficar preferencialmente no rodape para nao atrasar o carregamento da pagina principal -->
 	<script src="http://barra.brasil.gov.br/barra.js?cor=verde" type="text/javascript"></script><noscript>&nbsp;<!-- item para fins de acessibilidade --></noscript>
-
 
 <!--fim footer colab01-->
 
