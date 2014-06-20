@@ -1029,7 +1029,7 @@ table td[class*="span"],table th[class*="span"],.row-fluid table td[class*="span
 form {
 	margin:0 0 20px;
 }
-fieldset {
+fieldset-new {
 	padding:0px;
 	margin:0px;
 	border:0;
@@ -1066,7 +1066,7 @@ label {
 }
 select,textarea,input[type="text"],input[type="password"],input[type="datetime"],input[type="datetime-local"],input[type="date"],input[type="month"],input[type="time"],input[type="week"],input[type="number"],input[type="email"],input[type="url"],input[type="search"],input[type="tel"],input[type="color"],.uneditable-input {
 	display:inline-block;
-	height:20px;
+	/*height:20px;*/
 	padding:4px 6px;
 	margin-bottom:10px;
 	font-size:14px;
@@ -1577,7 +1577,7 @@ legend+.control-group {
 }
 .form-horizontal .control-label {
 	float:left;
-	width:160px;
+	/*width:160px;*/
 	padding-top:5px;
 	text-align:right;
 }

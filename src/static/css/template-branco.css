@@ -217,6 +217,7 @@ header #portal-searchbox input.searchField {
 font-size:12px;
 width:400px; /*Tamanho do campo de busca*/
 background-color:#E9EBEE;
+height:20px;
 }
 header #portal-searchbox input.searchField:focus {
 /*background-color:#ffffe5*/
