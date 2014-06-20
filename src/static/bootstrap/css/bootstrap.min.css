@@ -185,8 +185,9 @@ a:hover,a:focus {
 	border-radius:500px;
 }
 .row {
-	margin-left:-30px;
+	margin-left:auto !important;
 	*zoom:1;
+	margin-right:auto !important;
 }
 .row:before,.row:after {
 	display:table;
