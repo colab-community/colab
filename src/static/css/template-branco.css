@@ -233,7 +233,7 @@ color:#0a5517;
 -webkit-font-smoothing:antialiased
 }
 header #social-icons {
-margin:2px 0 2px 0;
+margin:50px 0 2px 0; /*modifiquei aqui 2px 0 2px 0*/
 opacity:.85;
 -moz-opacity:.85;
 filter:alpha(opacity=85)
@@ -1947,7 +1947,7 @@ color:#FFF
 background-color:#000
 }
 .contraste header #portal-searchbox .searchButton {
-background:yellow;
+background:#000000;
 color:#000
 }
 .contraste header #social-icons a {

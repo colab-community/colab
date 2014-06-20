@@ -189,6 +189,11 @@ a:hover,a:focus {
 	*zoom:1;
 	margin-right:auto !important;
 }
+/*#portal-searchbox.row{
+	position:absolute;
+	right:120px;
+	padding:-20px;*/
+}
 .row:before,.row:after {
 	display:table;
 	content:"";
@@ -608,9 +613,9 @@ ul,ol {
 ul ul,ul ol,ol ol,ol ul {
 	margin-bottom:0;
 }
-li {
+/*li {
 	line-height:20px;
-}
+}*/
 ul.unstyled,ol.unstyled {
 	margin-left:0;
 	list-style:none;
@@ -1025,9 +1030,12 @@ form {
 	margin:0 0 20px;
 }
 fieldset {
-	padding:0;
-	margin:0;
+	padding:0px;
+	margin:0px;
 	border:0;
+	position: absolute;
+	right: 150px;
+
 }
 legend {
 	display:block;
@@ -2416,6 +2424,12 @@ button.btn.btn-mini,input[type="submit"].btn.btn-mini {
 	min-height:30px;
 	border: none;
 }
+#user-menu.dropdown{
+	right:-380px;
+}
+#ali-menu{
+	right:-300px;
+}
 /*FIM -  Criei aqui para nao modificar o bootstrap do Colab*/
 }
 .navbar-inner {
@@ -2844,6 +2858,9 @@ button.btn.btn-mini,input[type="submit"].btn.btn-mini {
 	border-color:rgba(0,0,0,0.1) rgba(0,0,0,0.1) rgba(0,0,0,0.25);
 	*background-color:#040404;
 	filter:progid:DXImageTransform.Microsoft.gradient(enabled = false);
+}
+.navbar-collapse{
+	left:-30px;
 }
 .navbar-inverse .btn-navbar:hover,.navbar-inverse .btn-navbar:focus,.navbar-inverse .btn-navbar:active,.navbar-inverse .btn-navbar.active,.navbar-inverse .btn-navbar.disabled,.navbar-inverse .btn-navbar[disabled] {
 	color:#ffffff;
