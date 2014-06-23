@@ -59,242 +59,247 @@
 	<a class="hide" id="topo" href="#accessibility">Ir direto para menu de acessibilidade.</a>
 	<noscript>
 	  <div class="error minor-font">
-        Seu navegador de internet está sem suporte à JavaScript. Por esse motivo algumas funcionalidades do site podem não estar acessíveis.
-      </div>
+          Seu navegador de internet está sem suporte à JavaScript. Por esse motivo algumas funcionalidades do site podem não estar acessíveis.
+          </div>
 	</noscript>
 	<!--[if lt IE 7]><center><strong>Atenção, a versão de seu navegador não é compatível com este sítio. Atualize seu navegador.</strong></center><![endif]-->
 	<!-- barra do governo -->
 	<div id="barra-brasil">
 		<a href="http://brasil.gov.br" title="Acesse para conhecer todos os serviços e informações do Governo Brasileiro na Internet.">Portal do Governo Brasileiro</a>		
-    </div>
-    <!-- fim barra do governo -->
+        </div>
+        <!-- fim barra do governo -->
 
     {% browserid_info %}
 
     {% block navbar %}
 
-    <nav class="navbar navbar-default"  role="navigation"> <!--remove navbar-fixed-top-->
+    <nav class="navbar navbar-default"  role="navigation"> 
 
-<!--barra de navegacao modelo colab01-->
-<div class="layout">
-<header>
-<div class="container2">
-	<div class="row-fluid accessibility-language-actions-container">
-		<div class="span6 accessibility-container">
-			<ul id="accessibility">
-				<li>
-				<a accesskey="1" href="#content" id="link-conteudo">
-				Ir para o conte&uacute;do <span>1</span>
-				</a>
-				</li>
-				<li>
-				<a accesskey="2" href="#navigation" id="link-navegacao">
-				Ir para o menu <span>2</span>
-				</a>
-				</li>
-				<li>
-				<a accesskey="3" href="#portal-searchbox" id="link-buscar">
-				Ir para a busca <span>3</span>
-				</a>
-				</li>
-				<li>
-				<a accesskey="4" href="#footer" id="link-rodape">
-				Ir para o rodap&eacute; <span>4</span>
-				</a>
-				</li>
-			</ul>
-		</div>
+	<!--barra de navegacao modelo colab01-->
+	<header>
+		<div class="container2">
+			<div class="row-fluid accessibility-language-actions-container">
+				<div class="span6 accessibility-container">
+					<ul id="accessibility">
+						<li>
+						<a accesskey="1" href="#content" id="link-conteudo">
+						Ir para o conte&uacute;do <span>1</span>
+						</a>
+						</li>
+						<li>
+						<a accesskey="2" href="#navigation" id="link-navegacao">
+						Ir para o menu <span>2</span>
+						</a>
+						</li>
+						<li>
+						<a accesskey="3" href="#portal-searchbox" id="link-buscar">
+						Ir para a busca <span>3</span>
+						</a>
+						</li>
+						<li>
+						<a accesskey="4" href="#footer" id="link-rodape">
+						Ir para o rodap&eacute; <span>4</span>
+						</a>
+						</li>
+					</ul>
+				</div>
 
-		<div class="span6 language-and-actions-container">
-			<ul id="language" class="pull-right">
-				<li class="language-en">
-				<a href="#">ENGLISH</a>
-				</li>
-				<li class="language-es">
-				<a href="#">ESPAÑOL</a>
-				</li>
-			</ul>
-			<ul id="portal-siteactions" class="pull-right">
-				<li>
-				<a accesskey="5" href="/interna-acessibilidade.html">Acessibilidade</a>
-				</li>
-				<li>
-				<a accesskey="6" href="#" class="toggle-contraste">Alto Contraste</a>
-				</li>
-				<li>
-				<a accesskey="7" href="#">Mapa do Site</a>
-				</li>
-			</ul>
-		</div>
-		<!-- fim div.span6 -->
-	</div>
-	<!-- fim .row-fluid -->
-	<div class="row-fluid">
-		<div id="logo" class="span8">
-			<!-- <div id="logo" class="span8 big"> <div id="logo" class="span8 small"> -->
-			<a href="/" title="Portal do Software Público">
-			<img src="{{ STATIC_URL }}images/logotipo.png"/>
-			</a>
-		</div>
-		<!-- fim .span8 -->
-		<div class="span4">
-			<div id="portal-searchbox" class="row">
-				<form action="{% url 'haystack_search' %}" method="GET" id="search-form" class="navbar-form navbar-right hidden-xs hidden-sm" role="search">
-					<fieldset-new>
-						<legend class="hide">Busca</legend>
-						<h2 class="hidden">Buscar no portal</h2>
-						<div class="input-append">
-							<div class="form-group">
-								<label class="sr-only" for="header-searchbox">{% trans 'Search here...' %}</label>
-								<input name="q" id="header-searchbox" class="searchField" value="{{ request.GET.q }}" type="search" placeholder="{% trans 'Search here...' %}"/>
-							</div>
-							<button type="submit" class="btn searchButton"><span class="hide">Buscar</span><i class="icon-search"></i></button>
-						</div>
-					</fieldset>
-				</form>
+				<div class="span6 language-and-actions-container">
+					<ul id="language" class="pull-right">
+						<li class="language-en">
+						<a href="#">ENGLISH</a>
+						</li>
+						<li class="language-es">
+						<a href="#">ESPAÑOL</a>
+						</li>
+					</ul>
+					<ul id="portal-siteactions" class="pull-right">
+						<li>
+						<a accesskey="5" href="/interna-acessibilidade.html">Acessibilidade</a>
+						</li>
+						<li>
+						<a accesskey="6" href="#" class="toggle-contraste">Alto Contraste</a>
+						</li>
+						<li>
+						<a accesskey="7" href="#">Mapa do Site</a>
+						</li>
+					</ul>
+				</div>
+				<!-- fim div.span6 -->
+
 			</div>
+			<!-- fim .row-fluid -->
+			<div class="row-fluid">
+				<div id="logo" class="span8">
+					<!-- <div id="logo" class="span8 big"> <div id="logo" class="span8 small"> -->
+					<a href="/" title="Portal do Software Público">
+					<img src="{{ STATIC_URL }}images/logotipo.png"/>
+					</a>
+				</div>
+				<!-- fim .span8 -->
+				<div class="span4">
+					<div id="portal-searchbox" class="row">
+						<form action="{% url 'haystack_search' %}" method="GET" id="search-form" class="navbar-form navbar-right hidden-xs hidden-sm" role="search">
+							<fieldset>
+								<legend class="hide">Busca</legend>
+								<h2 class="hidden">Buscar no portal</h2>
+								<div class="input-append">
+									<div class="form-group">
+										<label class="sr-only" for="header-searchbox">{% trans 'Search here...' %}</label>
+										<input name="q" id="header-searchbox" class="searchField" value="{{ request.GET.q }}" type="search" placeholder="{% trans 'Search here...' %}"/>
+									</div>
+									<button type="submit" class="btn searchButton"><span class="hide">Buscar</span><i class="icon-search"></i></button>
+								</div>
+							</fieldset>
+						</form>
+					</div>
 
-<!-- fim div#portal-searchbox.row -->
+		<!-- fim div#portal-searchbox.row -->
 
-			<div id="social-icons" class="row">
-				<h2 class="hidden">Redes Sociais</h2>
-				<ul class="pull-right">
-					<li class="portalredes-item"><a title="Twitter" href="https://twitter.com/twitter">
-					<i class="icon-twitter-sign"><span>Twitter</span></i></a>
-					</li>
-					<li class="portalredes-item"><a title="YouTube" href="http://youtube.com/youtube">
-					<i class="icon-youtube"><span>Youtube</span></i></a>
-					</li>
-					<li class="portalredes-item"><a title="Facebook" href="http://facebook.com/facebook">
-					<i class="icon-facebook-sign"><span>Facebook</span></i></a>
-					</li>
-					<li class="portalredes-item"><a title="Flickr" href="http://flickr.com/flickr">
-					<i class="icon-flickr"><span>Flickr</span></i></a>
-					</li>
-				</ul>
+					<div id="social-icons" class="row">
+						<h2 class="hidden">Redes Sociais</h2>
+						<ul class="pull-right">
+							<li class="portalredes-item"><a title="Twitter" href="https://twitter.com/twitter">
+							<i class="icon-twitter-sign"><span>Twitter</span></i></a>
+							</li>
+							<li class="portalredes-item"><a title="YouTube" href="http://youtube.com/youtube">
+							<i class="icon-youtube"><span>Youtube</span></i></a>
+							</li>
+							<li class="portalredes-item"><a title="Facebook" href="http://facebook.com/facebook">
+							<i class="icon-facebook-sign"><span>Facebook</span></i></a>
+							</li>
+							<li class="portalredes-item"><a title="Flickr" href="http://flickr.com/flickr">
+							<i class="icon-flickr"><span>Flickr</span></i></a>
+							</li>
+						</ul>
+					</div>
+					<!-- fim div#social-icons.row -->
+				</div>
+				<!-- fim .span4 -->
 			</div>
-			<!-- fim div#social-icons.row -->
+			<!-- fim .row-fluid -->
 		</div>
-		<!-- fim .span4 -->
-	</div>
-	<!-- fim .row-fluid -->
-</div>
-<!-- fim div.container2 -->
-<!-- fim .sobre -->
-<!--fim barra de navegacao modelo colab01-->
-    
 
-	<nav class="navbar navbar-default"  role="navigation"> <!--remove navbar-fixed-top-->
-	<div class="container">
-        <div class="navbar-header"> 
+		<!-- fim div.container2 -->
 
-        <!--  <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-main">
-            <span class="sr-only">Toggle navigation</span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>
-          <a class="navbar-brand" href="/"><img alt="Colab" src="/static/img/logo_nav.png"></a>
-        </div> -->
-<div class="sobre">
-<div class="container2">
-        <div class="collapse navbar-collapse navbar-main">
-          <ul class="nav navbar-nav">
-            <li>
-              <a href="/timeline">{% trans "Timeline" %}</a></li>
-            </li>
-            <li>
-              <a href="{% url 'thread_list' %}">{% trans "Lists" %}</a>
-            </li>
-            <li>
-              <a href="{% url "feedzilla_index" %}">{% trans "Blogs" %}</a>
-            </li>
-            <li class="dropdown">
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown">{% trans "Gitlab" %} <b class="caret"></b></a>
-              <ul class="dropdown-menu">
-                {% if user.is_active %}
-                    <li><a href="/dashboard/projects">{% trans "Projects" %}</a></li>
-                    <li><a href="/dashboard/issues">{% trans "Issues" %}</a></li>
-                    <li><a href="/dashboard/merge_requests">{% trans "Merge Requests" %}</a></li>
-                {% else %}
-                    {% trans 'Login' as login_text %}
-                    <li>{% browserid_login text=login_text %}</li>
-                {% endif %}
-              </ul>
-            </li>
-            <li class="dropdown">
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown">{% trans "Redmine" %} <b class="caret"></b></a>
-              <ul class="dropdown-menu">
-                {% if user.is_active %}
-                    <li><a href="/projects">{% trans "Projects" %}</a></li>
-                {% else %}
-                    {% trans 'Login' as login_text %}
-                    <li>{% browserid_login text=login_text %}</li>
-                {% endif %}
-              </ul>
-            </li>
-            <li class="dropdown">
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown">{% trans "Contribute" %} <b class="caret"></b></a>
-              <ul class="dropdown-menu">
-                <li><a href="/wiki">Wiki</a></li>
-                {% if user.is_active %}
-                <li><a href="/wiki/WikiNewPage">{% trans "New Wiki Page" %}</a></li>
-                {% endif %}
-                <li><a href="/report">{% trans "View Tickets" %}</a></li>
-                {% if user.is_active %}
-                <li><a href="/newticket">{% trans "New Ticket" %}</a></li>
-                {% endif %}
-                <li><a href="/roadmap">{% trans "Roadmap" %}</a></li>
-                <li><a href="/browser">{% trans "Browse Source" %}</a></li>
-                <li><a href="/ci">{% trans "Continuous Integration" %}</a></li>
-              </ul>
-            </li>
-            <li class="hidden-lg hidden-md">
-              <a href="{% url 'haystack_search' %}?q=">{% trans "Search" %}</a>
-            </li>
-          </ul>
+	<!-- fim .sobre -->
+	<!--fim barra de navegacao modelo colab01-->
+	    
 
-          <ul class="nav navbar-nav navbar-right">
-            {% if not user.is_authenticated %}
-              <li id="ali-menu"><a href="{% url 'signup' %}">{% trans "Register" %}</a></li>
-              {% trans 'Login' as login_text %}
-              <li id="ali-menu">{% browserid_login text=login_text %}</li>
-            {% else %}
-              <li id="user-menu" class="dropdown">
-                <a href="#" class="dropdown-toggle user" data-toggle="dropdown">{% gravatar user.email 25 %} <b class="caret"></b>&nbsp;&nbsp;</a>
-                <ul class="dropdown-menu" role="menu">
-                  <li>
-                    <div class="wrapper">
-                      <div class="thumbnail">{% gravatar user.email 100 %}</div>
-                      <div class="user-info">
-                        <span><b>{{ user.get_full_name }}</b></span>
-                        <span class="quiet">{{ user.email }}</span>
-                      </div>
-                      <div>
-                        <a class="btn btn-info pull-left" href="{% url 'user_profile' user.username %}">{% trans "My Profile" %}</a>
-                        {% trans 'Logout' as logout_text %}
-                        {% browserid_logout text=logout_text link_class='btn btn-default pull-right' %}
-                      </div>
-                    </div>
-                  </li>
-                </ul>
-              </li>
-            {% endif %}
-          </ul>
+		<nav class="navbar navbar-default"  role="navigation"> <!--remove navbar-fixed-top-->
+		    <div class="container">
+		        <div class="navbar-header">
 
-      <!-- <form action="{% url 'haystack_search' %}" method="GET" id="search-form" class="navbar-form navbar-right hidden-xs hidden-sm" role="search">
-              <div class="form-group">
-              <label class="sr-only" for="header-searchbox">{% trans 'Search here...' %}</label>
-              <input name="q" id="header-searchbox"
-                     class="form-control" value="{{ request.GET.q }}"
-                     type="search" placeholder="{% trans 'Search here...' %}" />
-            </div> 
-            <button type="submit" class="btn btn-default"><span class="glyphicon glyphicon-search"></span></button> -->
-          </form>
-        </div>
-      </div>
-    </nav>
+			<!--  <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-main">
+			    <span class="sr-only">Toggle navigation</span>
+			    <span class="icon-bar"></span>
+			    <span class="icon-bar"></span>
+			    <span class="icon-bar"></span>
+			    <span class="icon-bar"></span>
+			  </button>
+			  <a class="navbar-brand" href="/"><img alt="Colab" src="/static/img/logo_nav.png"></a>
+			 -->
+			</div>
+			<div class="collapse navbar-collapse navbar-main">
+			  <ul class="nav navbar-nav">
+			    <li>
+			      <a href="/timeline">{% trans "Timeline" %}</a>
+			    </li>
+			    <li>
+			      <a href="{% url 'thread_list' %}">{% trans "Groups" %}</a>
+			    </li>
+			    <li>
+			      <a href="{% url "feedzilla_index" %}">{% trans "Blogs" %}</a>
+			    </li>
+			    <li class="dropdown">
+			      <a href="#" class="dropdown-toggle" data-toggle="dropdown">{% trans "Gitlab" %} <b class="caret"></b></a>
+			      <ul class="dropdown-menu">
+				{% if user.is_active %}
+				    <li><a href="/dashboard/projects">{% trans "Projects" %}</a></li>
+				    <li><a href="/dashboard/issues">{% trans "Issues" %}</a></li>
+				    <li><a href="/dashboard/merge_requests">{% trans "Merge Requests" %}</a></li>
+				{% else %}
+				    {% trans 'Login' as login_text %}
+				    <li>{% browserid_login text=login_text %}</li>
+				{% endif %}
+			      </ul>
+			    </li>
+			    <li class="dropdown">
+			      <a href="#" class="dropdown-toggle" data-toggle="dropdown">{% trans "Redmine" %} <b class="caret"></b></a>
+			      <ul class="dropdown-menu">
+				{% if user.is_active %}
+				    <li><a href="/projects">{% trans "Projects" %}</a></li>
+				{% else %}
+				    {% trans 'Login' as login_text %}
+				    <li>{% browserid_login text=login_text %}</li>
+				{% endif %}
+			      </ul>
+			    </li>
+			    <li class="dropdown">
+			      <a href="#" class="dropdown-toggle" data-toggle="dropdown">{% trans "Contribute" %} <b class="caret"></b></a>
+			      <ul class="dropdown-menu">
+				<li><a href="/wiki">Wiki</a></li>
+				{% if user.is_active %}
+				<li><a href="/wiki/WikiNewPage">{% trans "New Wiki Page" %}</a></li>
+				{% endif %}
+				<li><a href="/report">{% trans "View Tickets" %}</a></li>
+				{% if user.is_active %}
+				<li><a href="/newticket">{% trans "New Ticket" %}</a></li>
+				{% endif %}
+				<li><a href="/roadmap">{% trans "Roadmap" %}</a></li>
+				<li><a href="/browser">{% trans "Browse Source" %}</a></li>
+				<li><a href="/ci">{% trans "Continuous Integration" %}</a></li>
+			      </ul>
+			    </li>
+			    <li class="hidden-lg hidden-md">
+			      <a href="{% url 'haystack_search' %}?q=">{% trans "Search" %}</a>
+			    </li>
+			  </ul>
+
+			  <ul class="nav navbar-nav navbar-right">
+			    {% if not user.is_authenticated %}
+			      <li id="ali-menu"><a href="{% url 'signup' %}">{% trans "Register" %}</a></li>
+			      {% trans 'Login' as login_text %}
+			      <li id="ali-menu">{% browserid_login text=login_text %}</li>
+			    {% else %}
+			      <li id="user-menu" class="dropdown">
+				<a href="#" class="dropdown-toggle user" data-toggle="dropdown">{% gravatar user.email 25 %} <b class="caret"></b>&nbsp;&nbsp;</a>
+				<ul class="dropdown-menu" role="menu">
+				  <li>
+				    <div class="wrapper">
+				      <div class="thumbnail">{% gravatar user.email 100 %}</div>
+				      <div class="user-info">
+				        <span><b>{{ user.get_full_name }}</b></span>
+				        <span class="quiet">{{ user.email }}</span>
+				      </div>
+				      <div>
+				        <a class="btn btn-info pull-left" href="{% url 'user_profile' user.username %}">{% trans "My Profile" %}</a>
+				        {% trans 'Logout' as logout_text %}
+				        {% browserid_logout text=logout_text link_class='btn btn-default pull-right' %}
+				      </div>
+				    </div> <!-- Fecha div wrapper -->
+				  </li>
+				</ul> <!-- Fecha ul dropdown-menu -->
+			      </li> <!-- user-menu -->
+			    {% endif %}
+			  </ul> <!-- fecha ul navbar-nav -->
+
+		      <!-- <form action="{% url 'haystack_search' %}" method="GET" id="search-form" class="navbar-form navbar-right hidden-xs hidden-sm" role="search">
+			      <div class="form-group">
+			      <label class="sr-only" for="header-searchbox">{% trans 'Search here...' %}</label>
+			      <input name="q" id="header-searchbox"
+				     class="form-control" value="{{ request.GET.q }}"
+				     type="search" placeholder="{% trans 'Search here...' %}" />
+			    </div> 
+			    <button type="submit" class="btn btn-default"><span class="glyphicon glyphicon-search"></span></button> 
+			  </form>-->
+
+			</div> <!-- navbar-collapse -->
+	      	</div> <!-- container -->
+	    </nav> <!-- navbar-default -->
+	</header>
+</nav>
+
     {% endblock %}
 
       {% block messages %}
@@ -444,7 +449,7 @@
 					<a href="http://www.brasil.gov.br/" class="brasil pull-right"><img src="{{ STATIC_URL }}images/brasil.png" alt="Brasil - Governo Federal"></a>
 				</div>				
 			</div>		
-			</div>
+
     		<div class="footer-atalhos visible-phone">
     			<div class="container2">
     				<span class="hide">Fim do conteúdo da página</span>
@@ -452,8 +457,7 @@
     			</div>
     		</div>
     	</footer>		
-    </div>
-</div>
+
 
 	<!-- fim div#wrapper -->	
 	<!-- scripts principais -->	
