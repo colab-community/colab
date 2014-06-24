@@ -169,7 +169,8 @@ header #language li:first-child {
 header #language li a {
 	padding:0 0 0 16px
 }
-/*header #language li.language-en a{background:transparent url('../img/flag-en.gif') no-repeat 0 center}header #language li.language-es a{background:transparent url('../img/flag-es.gif') no-repeat 0 center} */
+/*header #language li.language-en a{background:transparent url('../img/flag-en.gif') no-repeat 0 center}header #language li.language-es a{background:transparent url('../img/flag-es.gif') no-repeat 0 center */
+}
 header #logo {
 margin:3px 0 20px 0;
 }
@@ -301,10 +302,10 @@ background-color:#56585c;
 color:#FFFFFF;
 text-decoration:none;
 /*padding:10 10px;*/
-/*padding-bottom:6px;
+padding-bottom:6px;
 padding-left:10px;
 padding-right:10px;
-padding-top:6px;*/
+padding-top:6px;
 }
 .new-dropdown ul li{ /*fazendo testes aqui*/ 
 position:absolute;
@@ -314,7 +315,7 @@ background-color:#fff;
 display:none;
 }
 .new-dropdown li:hover ul, .menu li.over ul{display:block;}
-
+}
 main .container {
 padding:48px 0 65px 0
 }
@@ -711,6 +712,7 @@ header .container,main .container,footer .container {
 	padding-top:6px;
 	height:29px
 }
+}
 @media(max-width:979px) {
 header .accessibility-container {
 	display:none!important
@@ -827,7 +829,7 @@ header #logo h1 {
 	padding-top:6px;
 	height:29px
 }
-
+}
 @media(max-width:767px) {
 header .accessibility-container {
 	display:none!important
@@ -1043,7 +1045,7 @@ footer .footer-logos {
 footer .footer-ferramenta {
 	text-align:center
 }
-
+}
 								main div.container .module {
 padding-bottom:20px
 }
@@ -2042,7 +2044,7 @@ background:#000
 	background:#000!important;
 	border-color:#000!important
 }
-
+}
 .contraste .module {
 background:transparent!important
 }
