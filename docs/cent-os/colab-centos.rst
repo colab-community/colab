@@ -20,6 +20,7 @@ Install colab requirements
 .. code-block::
 
     sudo pip2.7 install mimeparse
+    sudo yum install libxml2 libxml2-devel libxslt libxslt-devel
     sudo pip2.7 install -r /opt/colab/requirements.txt
 
 Create the local_settings file in colab folder
