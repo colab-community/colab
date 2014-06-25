@@ -246,6 +246,7 @@ Editing ROUTES
 Restarting  Postgresql
   
 .. code-block::
+
     sudo /etc/init.d/postgresql-9.3 restart
 
 Running Redmine Using unicorn
