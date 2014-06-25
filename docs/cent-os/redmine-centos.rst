@@ -252,7 +252,7 @@ Running Redmine Using unicorn
 
 .. code-block::
   
-  unicorn_rails -c /opt/redmine/config/unicorn.rb -D -E production 
+  sudo unicorn_rails -c /opt/redmine/config/unicorn.rb -E development -l 0.0.0.0:3000 -D
 
 
 
