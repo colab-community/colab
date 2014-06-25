@@ -38,7 +38,7 @@
     {% block head_css %}{% endblock %}
 
 <!-- chamando nossos arquivos Colab01-->
-	<link rel="stylesheet" href="{{ STATIC_URL }}bootstrap/css/bootstrap.min.css" type="text/css" media="screen" />
+	<!--<link rel="stylesheet" href="{{ STATIC_URL }}bootstrap/css/bootstrap.min.css" type="text/css" media="screen" /> -->
     
         <link rel="stylesheet" href="{{ STATIC_URL }}css/template-branco.css" type="text/css" media="screen" />
 
@@ -458,12 +458,12 @@
 
 	<!-- fim div#wrapper -->	
 	<!-- scripts principais -->	
-	<script src="{{ STATIC_URL }}js/jquery.min.js" type="text/javascript"></script><noscript>&nbsp;<!-- item para fins de acessibilidade --></noscript>
-	<script src="{{ STATIC_URL }}js/jquery-noconflict.js" type="text/javascript"></script><noscript>&nbsp;<!-- item para fins de acessibilidade --></noscript>
-	<script src="{{ STATIC_URL }}bootstrap/js/bootstrap.min.js" type="text/javascript"></script><noscript>&nbsp;<!-- item para fins de acessibilidade --></noscript>
-	<script src="{{ STATIC_URL }}js/jquery.cookie.js" type="text/javascript"></script><noscript>&nbsp;<!-- item para fins de acessibilidade --></noscript>
+
+	<!--<script src="{{ STATIC_URL }}js/jquery-noconflict.js" type="text/javascript"></script>--><noscript>&nbsp;<!-- item para fins de acessibilidade --></noscript>
+
+	<script src="{{ STATIC_URL }}third-party/jquery.cookie.js" type="text/javascript"></script><noscript>&nbsp;<!-- item para fins de acessibilidade --></noscript>
 	<script src="{{ STATIC_URL }}js/template.js" type="text/javascript"></script><noscript>&nbsp;<!-- item para fins de acessibilidade --></noscript>
-	<script src="{{ STATIC_URL }}jplayer/js/jquery.jplayer.min.js" type="text/javascript"></script><noscript>&nbsp;<!-- item para fins de acessibilidade --></noscript>
+	<script src="{{ STATIC_URL }}third-party/jplayer/jquery.jplayer.min.js" type="text/javascript"></script><noscript>&nbsp;<!-- item para fins de acessibilidade --></noscript>
 	<script type="text/javascript">
 	//<![CDATA[
 	jQuery(document).ready(function(){
