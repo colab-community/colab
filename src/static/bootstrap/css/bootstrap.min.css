@@ -214,9 +214,9 @@ a:hover,a:focus {
 	width:100%;
 
 }
-.container2,.navbar-static-top .container2,.navbar-fixed-top .container2,.navbar-fixed-bottom .container2 {
+/*.container2,.navbar-static-top .container2,.navbar-fixed-top .container2,.navbar-fixed-bottom .container2 {
 	width:930px;
-}
+}*/
 .span12 {
 	width:930px;
 }
@@ -2425,7 +2425,7 @@ button.btn.btn-mini,input[type="submit"].btn.btn-mini {
 	border: none;
 }
 #user-menu.dropdown{
-	right:-380px;
+	right:-20px;
 }
 #ali-menu{
 	right:-300px;
@@ -3648,6 +3648,8 @@ a.thumbnail:hover,a.thumbnail:focus {
 .modal-form {
 	margin-bottom:0;
 }
+
+/*fim teste footer*/
 .modal-footer {
 	padding:14px 15px 15px;
 	margin-bottom:0;
@@ -4071,7 +4073,7 @@ button.close {
 	opacity:1;
 }
 .collapse {
-	position:relative;
+	/*position:relative; removi para alinhar os menus do gitlab */
 	height:0;
 	overflow:hidden;
 	-webkit-transition:height 0.35s ease;
