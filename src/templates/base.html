@@ -32,7 +32,7 @@
     <script type="text/javascript" src="{{ STATIC_URL }}third-party/jquery-2.0.3.min.js"></script>
     <script type="text/javascript" src="{{ STATIC_URL }}third-party/jquery.debouncedresize.js"></script>
     <script type="text/javascript" src="{{ STATIC_URL }}third-party/jquery.cookie.js"></script>
-    <script src="{{ STATIC_URL }}third-party/bootstrap/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="{{ STATIC_URL }}third-party/bootstrap/js/bootstrap.min.js"></script>
 
     {% block head_js %}{% endblock %}
     {% block head_css %}{% endblock %}
@@ -44,14 +44,14 @@
 
 <!--Fim arquivos colab 01-->
 
-  {% endblock %}
+
 
 <!-- chamada de fontes local -->
 <!-- <link rel="stylesheet" href="css/fontes.css" type='text/css'-->
 	<!-- chamada de fontes externas -->
-	<link href='http://fonts.googleapis.com/css?family=Open+Sans:400italic,400,600,800,700' rel='stylesheet' type='text/css' />
-	<link rel="stylesheet" href="{{ STATIC_URL }}jplayer/skin/portalpadrao01/jplayer.css" type='text/css'/>	
-
+	<!--<link href='http://fonts.googleapis.com/css?family=Open+Sans:400italic,400,600,800,700' rel='stylesheet' type='text/css' />
+	<link rel="stylesheet" href="{{ STATIC_URL }}jplayer/skin/portalpadrao01/jplayer.css" type='text/css'/>	-->
+  {% endblock %}
   </head>
 
   <body class="container">
@@ -68,7 +68,8 @@
 		<a href="http://brasil.gov.br" title="Acesse para conhecer todos os serviços e informações do Governo Brasileiro na Internet.">Portal do Governo Brasileiro</a>		
         </div>
         <!-- fim barra do governo -->
-
+<!-- inicio div contraste -->
+<div class="layout"> 
     {% browserid_info %}
 
     {% block navbar %}
@@ -131,9 +132,9 @@
 			<!-- fim .row-fluid -->
 			<div class="row-fluid">
 				<div id="logo" class="span8">
-					<!-- <div id="logo" class="span8 big"> <div id="logo" class="span8 small"> -->
-					<a href="/" title="Portal do Software Público">
-					<img src="{{ STATIC_URL }}images/logotipo.png"/>
+					<!-- <div id="logo" class="span8 big"> Portal do Software Público <div id="logo" class="span8 small"> -->
+					<a href="/" title="Portal do Software Público"><div class="logotipo"></div> 
+					<!--<img src="{{ STATIC_URL }}images/logotipo.png"/> -->
 					</a>
 				</div>
 				<!-- fim .span8 -->
@@ -461,7 +462,7 @@
 
 	<!--<script src="{{ STATIC_URL }}js/jquery-noconflict.js" type="text/javascript"></script>--><noscript>&nbsp;<!-- item para fins de acessibilidade --></noscript>
 
-	<script src="{{ STATIC_URL }}third-party/jquery.cookie.js" type="text/javascript"></script><noscript>&nbsp;<!-- item para fins de acessibilidade --></noscript>
+	<!--<script src="{{ STATIC_URL }}third-party/jquery.cookie.js" type="text/javascript">--></script><noscript>&nbsp;<!-- item para fins de acessibilidade --></noscript>
 	<script src="{{ STATIC_URL }}js/template.js" type="text/javascript"></script><noscript>&nbsp;<!-- item para fins de acessibilidade --></noscript>
 	<script src="{{ STATIC_URL }}third-party/jplayer/jquery.jplayer.min.js" type="text/javascript"></script><noscript>&nbsp;<!-- item para fins de acessibilidade --></noscript>
 	<script type="text/javascript">
@@ -475,9 +476,9 @@
 	<!-- Script do portal Brasil deve ficar preferencialmente no rodape para nao atrasar o carregamento da pagina principal -->
 	<script src="http://barra.brasil.gov.br/barra.js?cor=verde" type="text/javascript"></script><noscript>&nbsp;<!-- item para fins de acessibilidade --></noscript>
 
-<!--fim footer colab01-->
-<!--movi o bloco da licenca -->
-<div class="row">
+    <!--fim footer colab01-->
+    <!--bloco da licenca -->
+    <div class="row">
       <p class="col-lg-12 text-center">
         <a href="{% url 'opendata' %}"><img src="{{ STATIC_URL }}img/opendata3.png"/></a>
       </p>
@@ -492,6 +493,9 @@
       </p>
     </div>
 <!--fim bloco licenca -->
+
+</div>
+<!-- fim div contraste -->
   {% block footer_js %}{% endblock %}
   </body>
 </html>

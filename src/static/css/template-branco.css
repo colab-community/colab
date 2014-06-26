@@ -171,12 +171,22 @@ header #language li a {
 }
 /*header #language li.language-en a{background:transparent url('../img/flag-en.gif') no-repeat 0 center}header #language li.language-es a{background:transparent url('../img/flag-es.gif') no-repeat 0 center */
 }
+
 header #logo {
 margin:3px 0 20px 0;
 }
+
 header #logo a {
 color:#000000
 }
+
+header #logo .logotipo {
+background-image: url('../images/logotipo.png');
+background-repeat: no-repeat;
+height: 78px;
+width: 374px;
+}
+
 header #logo .portal-title-1 {
 font-size:.85em;
 display:block;
@@ -1920,8 +1930,14 @@ background:#FFF;
 color:#000
 }
 .contraste header #logo a {
-color:yellow
+color:yellow;
 }
+
+.contraste header #logo .logotipo {
+background-image: url('../images/logotipo_contraste.png');
+background-repeat: no-repeat;
+}
+
 .contraste header .sobre {
 background:#1c1c1c;
 border-color:yellow
@@ -1942,13 +1958,14 @@ color:yellow
 color:yellow!important
 }
 .contraste header #portal-searchbox input {
-color:#FFF
+color:#FFF;
+background-color:#1c1c1c;
 }
 .contraste header #portal-searchbox input:focus {
 background-color:#000
 }
 .contraste header #portal-searchbox .searchButton {
-background:#000000;
+background-color:#000000;
 color:#000
 }
 .contraste header #social-icons a {
@@ -1957,6 +1974,25 @@ color:yellow
 .contraste header #social-icons a:hover {
 color:white
 }
+
+.contraste .navbar-default {
+color: #ff0;
+background-color: #75767A;
+border-color: transparent;
+min-height: 30px;
+border: none;
+}
+
+.contraste .navbar .nav > li > a {
+color: #ff0;
+text-shadow: none;
+}
+
+.contraste .dropdown-menu > li > a {
+    background-color: #1C1C1C;
+    color: #FFFFFF;
+}
+
 .contraste main div.container #em-destaque h2 {
 background:#000;
 border-bottom:dotted #fff 1px
@@ -5093,7 +5129,7 @@ button.btn.btn-mini,input[type="submit"].btn.btn-mini {
 }
 .navbar {
 	overflow:visible;
-	margin-bottom:20px;
+	margin-bottom:0px;
 	*position:relative;
 	*z-index:2;
 }
@@ -5102,8 +5138,8 @@ button.btn.btn-mini,input[type="submit"].btn.btn-mini {
 .navbar-default {
 	color:#000000;	
 	background-color:#e9ebec;
-	border-color:none;
-	min-height:30px;
+	border-color: transparent;
+	min-height: 30px;
 	border: none;
 }
 #user-menu.dropdown{
