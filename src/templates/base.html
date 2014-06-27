@@ -37,12 +37,7 @@
     {% block head_js %}{% endblock %}
     {% block head_css %}{% endblock %}
 
-<!-- chamando nossos arquivos Colab01-->
-	<!--<link rel="stylesheet" href="{{ STATIC_URL }}bootstrap/css/bootstrap.min.css" type="text/css" media="screen" /> -->
-    
-        <link rel="stylesheet" href="{{ STATIC_URL }}css/template-branco.css" type="text/css" media="screen" />
 
-<!--Fim arquivos colab 01-->
 
 
 
@@ -52,6 +47,12 @@
 	<!--<link href='http://fonts.googleapis.com/css?family=Open+Sans:400italic,400,600,800,700' rel='stylesheet' type='text/css' />
 	<link rel="stylesheet" href="{{ STATIC_URL }}jplayer/skin/portalpadrao01/jplayer.css" type='text/css'/>	-->
   {% endblock %}
+<!-- chamando nossos arquivos Colab01-->
+	<!--<link rel="stylesheet" href="{{ STATIC_URL }}bootstrap/css/bootstrap.min.css" type="text/css" media="screen" /> -->
+    
+        <link rel="stylesheet" href="{{ STATIC_URL }}css/template-branco.css" type="text/css" media="screen" />
+
+<!--Fim arquivos colab 01-->
   </head>
 
   <body class="container">
@@ -99,7 +100,7 @@
 						</a>
 						</li>
 						<li>
-						<a accesskey="4" href="#footer" id="link-rodape">
+						<a accesskey="4" href="#footer-colab" id="link-rodape">
 						Ir para o rodap&eacute; <span>4</span>
 						</a>
 						</li>
@@ -362,10 +363,10 @@
     			</div>
     		</div>
     		<div class="container2 container-menus">
-    			<div id="footer" class="row footer-menus">
+    			<div id="footer-colab" class="row footer-menus">
     				<span class="hide">Início da navegação de rodapé</span>
     				<div class="span3">
-						<nav class="row assuntos nav">
+						<nav class="row assuntos ">
 							<h2>Assuntos</h2>
 							<ul>
 								<li><a href="#" title="Editoria A">Editoria A</a></li>
@@ -375,7 +376,7 @@
 						</nav>    					
     				</div>
 					<div class="span3">
-						<nav class="row servicos nav">
+						<nav class="row servicos ">
 							<h2>Serviços</h2>
 							<ul>
 								<li class="portalservicos-item">
@@ -397,7 +398,7 @@
 						</nav>							
 					</div>
 					<div class="span3">
-						<nav class="row redes-sociais nav">
+						<nav class="row redes-sociais ">
 							<h2>Redes Sociais</h2>
 							<ul>
 								<li class="portalredes-item"><a title="Twitter" href="https://twitter.com/twitter">
@@ -416,14 +417,14 @@
 						</nav>						
 					</div>
 					<div class="span3">
-						<nav class="row rss nav">
+						<nav class="row rss ">
 							<h2>RSS</h2>
 							<ul>
 								<li><a href="#" title="O que é?">O que é?</a></li>
 								<li><a href="#" title="Assine">Assine</a></li>
 							</ul>
 						</nav>
-						<nav class="row sobre nav">
+						<nav class="row sobre ">
 							<h2>Navegação</h2>
 							<ul>
 								<li><a href="#">Acessibilidade</a></li>

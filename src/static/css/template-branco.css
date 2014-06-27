@@ -35,10 +35,20 @@ a:focus {
 a:active,a:hover {
 	outline:0
 }
+
+a, a:link, a:visited {
+	color: #56585C;
+}
+
 * {
 	list-style:none;
 	vertical-align:baseline
 }
+
+footer ul li a {
+	color: #56585C !important;
+}
+
 @media screen {
 	* {
 		margin:0;
@@ -317,6 +327,12 @@ padding-left:10px;
 padding-right:10px;
 padding-top:6px;
 }
+
+header div.navbar-collapse {
+padding-right: 0px;
+padding-left: 0px;
+}
+
 .new-dropdown ul li{ /*fazendo testes aqui*/ 
 position:absolute;
 top:25px;
@@ -620,10 +636,10 @@ margin-left:1px!important
 font-size:18px!important;
 margin-left:1px!important
 }
-					footer {
+footer {
 background:#ecedf1
 }
-					footer .footer-atalhos {
+footer .footer-atalhos {
 background:#fff;
 border-bottom: 2px
 }
@@ -687,8 +703,9 @@ font-size:.91em;
 line-height:1em
 }
 @media(min-width:980px) {
+
 header .container,main .container,footer .container {
-	width:960px
+	width:1040px
 }
 					main #navigation {
 	width:210px!important
@@ -3187,7 +3204,7 @@ a:hover,a:focus {
 	margin-right:auto;
 	margin-left:auto;
 	*zoom:1;
-	max-width: 960px; 
+	max-width: 1040px; 
 }
 .container2:before,.container2:after {
 	display:table;
@@ -3749,7 +3766,7 @@ form {
 	margin:0px;
 	border:0;
 	position: absolute;
-	right: 150px;
+	right: 110px;
 
 }
 legend {
@@ -3776,7 +3793,7 @@ input,button,select,textarea {
 	font-family:"Helvetica Neue",Helvetica,Arial,sans-serif;
 }
 label {
-	display:block;
+	/*display:block; Afetando o trac*/
 	margin-bottom:5px;
 }
 select,textarea,input[type="text"],input[type="password"],input[type="datetime"],input[type="datetime-local"],input[type="date"],input[type="month"],input[type="time"],input[type="week"],input[type="number"],input[type="email"],input[type="url"],input[type="search"],input[type="tel"],input[type="color"],.uneditable-input {
@@ -4314,7 +4331,7 @@ legend+.control-group {
 .form-horizontal .form-actions {
 	padding-left:180px;
 }
-.btn {
+.btn, .btn.btn-primary, .btn.btn-save, .btn.reply-btn {
 	display:inline-block;
 	*display:inline;
 	*zoom:1;
@@ -4350,7 +4367,8 @@ legend+.control-group {
 	-moz-box-shadow:inset 0 1px 0 rgba(255,255,255,.2),0 1px 2px rgba(0,0,0,.05);
 	box-shadow:inset 0 1px 0 rgba(255,255,255,.2),0 1px 2px rgba(0,0,0,.05);
 }
-.btn:hover,.btn:focus,.btn:active,.btn.active,.btn.disabled,.btn[disabled] {
+.btn:hover,.btn:focus,.btn:active,.btn.active,.btn.disabled,.btn[disabled],
+.btn.btn-primary:hover, .btn.btn-save:hover, .btn.reply-btn:hover  {
 	color:#333333;
 	background-color:#e6e6e6;
 	*background-color:#d9d9d9;
@@ -5024,6 +5042,12 @@ button.btn.btn-mini,input[type="submit"].btn.btn-mini {
 	background-color:#999999;
 	border-color:#999999;
 }
+
+.navbar a.dropdown-toggle.user:hover,
+.navbar a.dropdown-toggle.user:focus {
+	background-color: transparent;
+} 
+
 .nav li.dropdown.open .caret,.nav li.dropdown.open.active .caret,.nav li.dropdown.open a:hover .caret,.nav li.dropdown.open a:focus .caret {
 	border-top-color:#ffffff;
 	border-bottom-color:#ffffff;
@@ -5134,7 +5158,7 @@ button.btn.btn-mini,input[type="submit"].btn.btn-mini {
 	*z-index:2;
 }
 
-/*Criei aqui para nao modificar o bootstrap do Colab*/
+/* Midialab - modificar o bootstrap do Colab*/
 .navbar-default {
 	color:#000000;	
 	background-color:#e9ebec;
@@ -5142,13 +5166,17 @@ button.btn.btn-mini,input[type="submit"].btn.btn-mini {
 	min-height: 30px;
 	border: none;
 }
-#user-menu.dropdown{
-	right:-20px;
+
+#main-content {
+	width: 1040px;
+	margin-left: auto;
+	margin-right: auto;
 }
+
 #ali-menu{
 	right:0px;
 }
-/*FIM -  Criei aqui para nao modificar o bootstrap do Colab*/
+/* FIM - Midialab - modificar o bootstrap do Colab */
 }
 .navbar-inner {
 	min-height:40px;
@@ -5333,7 +5361,7 @@ button.btn.btn-mini,input[type="submit"].btn.btn-mini {
 .navbar .nav>li>a {
 	float:none;
 	padding:10px 15px 10px;
-	color:#777777;
+	color:#000000;
 	text-decoration:none;
 	text-shadow:0 1px 0 #ffffff;
 }
