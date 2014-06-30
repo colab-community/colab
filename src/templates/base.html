@@ -217,9 +217,9 @@
 			      <a href="#" class="dropdown-toggle" data-toggle="dropdown">{% trans "Gitlab" %} <b class="caret"></b></a>
 			      <ul class="dropdown-menu">
 				{% if user.is_active %}
-				    <li><a href="/dashboard/projects">{% trans "Projects" %}</a></li>
-				    <li><a href="/dashboard/issues">{% trans "Issues" %}</a></li>
-				    <li><a href="/dashboard/merge_requests">{% trans "Merge Requests" %}</a></li>
+				    <li><a href="/gitlab/dashboard/projects">{% trans "Projects" %}</a></li>
+				    <li><a href="/gitlab/dashboard/issues">{% trans "Issues" %}</a></li>
+				    <li><a href="/gitlab/dashboard/merge_requests">{% trans "Merge Requests" %}</a></li>
 				{% else %}
 				    {% trans 'Login' as login_text %}
 				    <li>{% browserid_login text=login_text %}</li>
@@ -230,7 +230,7 @@
 			      <a href="#" class="dropdown-toggle" data-toggle="dropdown">{% trans "Redmine" %} <b class="caret"></b></a>
 			      <ul class="dropdown-menu">
 				{% if user.is_active %}
-				    <li><a href="/projects">{% trans "Projects" %}</a></li>
+				    <li><a href="/redmine/projects">{% trans "Projects" %}</a></li>
 				{% else %}
 				    {% trans 'Login' as login_text %}
 				    <li>{% browserid_login text=login_text %}</li>

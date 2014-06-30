@@ -20,6 +20,7 @@ Install colab requirements
 .. code-block::
 
     sudo pip2.7 install mimeparse
+    sudo yum install libxml2 libxml2-devel libxslt libxslt-devel
     sudo pip2.7 install -r /opt/colab/requirements.txt
 
 Create the local_settings file in colab folder
@@ -135,6 +136,21 @@ Import mailman e-mails
 .. code-block::
 
     sudo python2.7 /opt/colab/src/manage.py import_emails
+
+Create Cronjobs to run django modules
+
+.. code-block::
+
+    crontab -e
+
+Add the following lines
+
+    5 * * * * /usr/bin/python2.7 /opt/colab/src/manage.py import_emails
+    45 * * * * /usr/bin/python2.7 /opt/colab/src/manage.py update_index
+
+.. code-block::
+
+    [ESC]:wq!
 
 *NOTE:*
 
