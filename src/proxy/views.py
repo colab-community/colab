@@ -56,7 +56,6 @@ class JenkinsProxyView(ProxyView):
     diazo_rules = os.path.join(DIAZO_RULES_DIR, 'jenkins.xml')
     html5 = True
 
-
 class GitlabProxyView(ProxyView):
     base_url = settings.COLAB_GITLAB_URL
     add_remote_user = settings.REVPROXY_ADD_REMOTE_USER
