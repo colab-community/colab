@@ -8,18 +8,4 @@
 
     <merge attributes="class" css:theme="body" css:content="body" />
     <drop css:content="#top-panel" />
-
-    <after theme-children="/html/head">
-      <script>jQuery.noConflict();</script>
-      <style>
-        #breadcrumbs {
-          border: 0 !important;
-        }
-
-        #right-top-nav {
-          margin-right: 5em !important;
-        }
-      </style>
-    </after>
-
 </rules>

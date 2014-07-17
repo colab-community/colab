@@ -114,10 +114,10 @@ class UserProfileDetailView(UserProfileBaseMixin, DetailView):
 
 
 def logoutColab(request):
-       response = logout(request, next_page='/')
-       response.delete_cookie('_redmine_session')
-       response.delete_cookie('_gitlab_session')
-       return response
+    response = logout(request, next_page='/')
+    response.delete_cookie('_redmine_session')
+    response.delete_cookie('_gitlab_session')
+    return response
 
 
 def signup(request):

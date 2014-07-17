@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<!--{% load i18n browserid conversejs gravatar %}-->
+{% load i18n browserid conversejs gravatar %}
 <html>
   <head>
   {% block head %}
@@ -12,8 +12,6 @@
     {% endblock %}
 
     <title>{% block title %}Software Público{% endblock %} -Software Público</title>
-
-   <!-- <link rel="shortcut icon" type="image/x-icon" href="{{ STATIC_URL }}img/interlegis.ico"> removido no modelo colab 01 --> 
 
     <link rel="stylesheet" href="{{ STATIC_URL }}third-party/bootstrap/css/bootstrap.min.css" type="text/css" media="screen, projection" />
 
@@ -37,19 +35,18 @@
     {% block head_js %}{% endblock %}
     {% block head_css %}{% endblock %}
 
-
-
-
+<!-- chamando nossos arquivos Colab01 -->
+       <link rel="stylesheet" href="{{ STATIC_URL }}css/template-branco.css" type="text/css" media="screen" />
+<!--Fim arquivos colab 01 -->
 
 <!-- chamada de fontes local -->
-<!-- <link rel="stylesheet" href="css/fontes.css" type='text/css'-->
-	<!-- chamada de fontes externas -->
-	<!--<link href='http://fonts.googleapis.com/css?family=Open+Sans:400italic,400,600,800,700' rel='stylesheet' type='text/css' />
-	<link rel="stylesheet" href="{{ STATIC_URL }}jplayer/skin/portalpadrao01/jplayer.css" type='text/css'/>	-->
+<!-- chamada de fontes externas -->
+       <link rel="stylesheet" href="{{ STATIC_URL }}jplayer/skin/portalpadrao01/jplayer.css" type='text/css'/>
+
   {% endblock %}
 <!-- chamando nossos arquivos Colab01-->
-	<!--<link rel="stylesheet" href="{{ STATIC_URL }}bootstrap/css/bootstrap.min.css" type="text/css" media="screen" /> -->
-    
+   <!--<link rel="stylesheet" href="{{ STATIC_URL }}bootstrap/css/bootstrap.min.css" type="text/css" media="screen" /> -->
+
         <link rel="stylesheet" href="{{ STATIC_URL }}css/template-branco.css" type="text/css" media="screen" />
 <link rel="stylesheet" href="{{ STATIC_URL }}css/colab-redmine.css" type="text/css" media="screen" />
 
@@ -59,247 +56,208 @@
 
   <body class="container">
 
-	<a class="hide" id="topo" href="#accessibility">Ir direto para menu de acessibilidade.</a>
-	<noscript>
-	  <div class="error minor-font">
+   <a class="hide" id="topo" href="#accessibility">Ir direto para menu de acessibilidade.</a>
+   <noscript>
+     <div class="error minor-font">
           Seu navegador de internet está sem suporte à JavaScript. Por esse motivo algumas funcionalidades do site podem não estar acessíveis.
           </div>
-	</noscript>
-	<!--[if lt IE 7]><center><strong>Atenção, a versão de seu navegador não é compatível com este sítio. Atualize seu navegador.</strong></center><![endif]-->
-	<!-- barra do governo -->
-	<div id="barra-brasil">
-		<a href="http://brasil.gov.br" title="Acesse para conhecer todos os serviços e informações do Governo Brasileiro na Internet.">Portal do Governo Brasileiro</a>		
+   </noscript>
+   <!--[if lt IE 7]><center><strong>Atenção, a versão de seu navegador não é compatível com este sítio. Atualize seu navegador.</strong></center><![endif]-->
+   <!-- barra do governo -->
+   <div id="barra-brasil">
+      <a href="http://brasil.gov.br" title="Acesse para conhecer todos os serviços e informações do Governo Brasileiro na Internet.">Portal do Governo Brasileiro</a>
         </div>
         <!-- fim barra do governo -->
 <!-- inicio div contraste -->
-<div class="layout"> 
+<div class="layout">
     {% browserid_info %}
 
     {% block navbar %}
 
-    <nav class="navbar navbar-default"  role="navigation"> 
+    <nav class="navbar navbar-default"  role="navigation">
 
-	<!--barra de navegacao modelo colab01-->
+   <!--barra de navegacao modelo colab01-->
 
-	<header>
-		<div class="container2">
-			<div class="row-fluid accessibility-language-actions-container">
-				<div class="span6 accessibility-container">
-					<ul id="accessibility">
-						<li>
-						<a accesskey="1" href="#content" id="link-conteudo">
-						Ir para o conte&uacute;do <span>1</span>
-						</a>
-						</li>
-						<li>
-						<a accesskey="2" href="#navigation" id="link-navegacao">
-						Ir para o menu <span>2</span>
-						</a>
-						</li>
-						<li>
-						<a accesskey="3" href="#portal-searchbox" id="link-buscar">
-						Ir para a busca <span>3</span>
-						</a>
-						</li>
-						<li>
-						<a accesskey="4" href="#footer-colab" id="link-rodape">
-						Ir para o rodap&eacute; <span>4</span>
-						</a>
-						</li>
-					</ul>
-				</div>
+   <header>
+      <div class="container2">
+         <div class="row-fluid accessibility-language-actions-container">
+            <div class="span6 accessibility-container">
+               <ul id="accessibility">
+                  <li>
+                  <a accesskey="1" href="#content" id="link-conteudo">
+                  Ir para o conte&uacute;do <span>1</span>
+                  </a>
+                  </li>
+                  <li>
+                  <a accesskey="2" href="#navigation" id="link-navegacao">
+                  Ir para o menu <span>2</span>
+                  </a>
+                  </li>
+                  <li>
+                  <a accesskey="3" href="#portal-searchbox" id="link-buscar">
+                  Ir para a busca <span>3</span>
+                  </a>
+                  </li>
+                  <li>
+                  <a accesskey="4" href="#footer-colab" id="link-rodape">
+                  Ir para o rodap&eacute; <span>4</span>
+                  </a>
+                  </li>
+               </ul>
+            </div>
 
-				<div class="span6 language-and-actions-container">
-					<ul id="language" class="pull-right">
-						<li class="language-en">
-						<a href="#">ENGLISH</a>
-						</li>
-						<li class="language-es">
-						<a href="#">ESPAÑOL</a>
-						</li>
-					</ul>
-					<ul id="portal-siteactions" class="pull-right">
-						<li>
-						<a accesskey="5" href="/interna-acessibilidade.html">Acessibilidade</a>
-						</li>
-						<li>
-						<a accesskey="6" href="#" class="toggle-contraste">Alto Contraste</a>
-						</li>
-						<li>
-						<a accesskey="7" href="#">Mapa do Site</a>
-						</li>
-					</ul>
-				</div>
-				<!-- fim div.span6 -->
-			</div>
-			<!-- fim .row-fluid -->
-			<div class="row-fluid">
-				<div id="logo" class="span8">
-					<!-- <div id="logo" class="span8 big"> Portal do Software Público <div id="logo" class="span8 small"> -->
-					<a href="/" title="Portal do Software Público"><div class="logotipo"></div> 
-					<!--<img src="{{ STATIC_URL }}images/logotipo.png"/> -->
-					</a>
-				</div>
-				<!-- fim .span8 -->
-				<div class="span4">
-					<div id="portal-searchbox" class="row">
-						<form action="{% url 'haystack_search' %}" method="GET" id="search-form" class="navbar-form navbar-right hidden-xs hidden-sm" role="search">
-							<fieldset class="fieldset-new">
-								<legend class="hide">Busca</legend>
-								<h2 class="hidden">Buscar no portal</h2>
-								<div class="input-append">
-									<div class="form-group">
-										<label class="sr-only" for="header-searchbox">{% trans 'Search here...' %}</label>
-										<input name="q" id="header-searchbox" class="searchField" value="{{ request.GET.q }}" type="search" placeholder="{% trans 'Search here...' %}"/>
-									</div>
-									<button type="submit" class="btn searchButton"><span class="hide">Buscar</span><i class="icon-search"></i></button>
-								</div>
-							</fieldset>
-						</form>
-					</div>
+            <div class="span6 language-and-actions-container">
+               <ul id="language" class="pull-right">
+                  <li class="language-en">
+                  <a href="#">ENGLISH</a>
+                  </li>
+                  <li class="language-es">
+                  <a href="#">ESPAÑOL</a>
+                  </li>
+               </ul>
+               <ul id="portal-siteactions" class="pull-right">
+                  <li>
+                  <a accesskey="5" href="/interna-acessibilidade.html">Acessibilidade</a>
+                  </li>
+                  <li>
+                  <a accesskey="6" href="#" class="toggle-contraste">Alto Contraste</a>
+                  </li>
+                  <li>
+                  <a accesskey="7" href="#">Mapa do Site</a>
+                  </li>
+               </ul>
+            </div>
+            <!-- fim div.span6 -->
+         </div>
+         <!-- fim .row-fluid -->
+         <div class="row-fluid">
+            <div id="logo" class="span8">
+               <!-- <div id="logo" class="span8 big"> Portal do Software Público <div id="logo" class="span8 small"> -->
+               <a href="/" title="Portal do Software Público"><div class="logotipo"></div> 
+               <!--<img src="{{ STATIC_URL }}img/logotipo.png"/> -->
+               </a>
+            </div>
+            <!-- fim .span8 -->
+            <div class="span4">
+               <div id="portal-searchbox" class="row">
+                  <form action="{% url 'haystack_search' %}" method="GET" id="search-form" class="navbar-form navbar-right hidden-xs hidden-sm" role="search">
+                     <fieldset class="fieldset-new">
+                        <legend class="hide">Busca</legend>
+                        <h2 class="hidden">Buscar no portal</h2>
+                        <div class="input-append">
+                           <div class="form-group">
+                              <label class="sr-only" for="header-searchbox">{% trans 'Search here...' %}</label>
+                              <input name="q" id="header-searchbox" class="searchField" value="{{ request.GET.q }}" type="search" placeholder="{% trans 'Search here...' %}"/>
+                           </div>
+                           <button type="submit" class="btn searchButton"><span class="hide">Buscar</span><i class="icon-search"></i></button>
+                        </div>
+                     </fieldset>
+                  </form>
+               </div>
 
-		<!-- fim div#portal-searchbox.row -->
+      <!-- fim div#portal-searchbox.row -->
 
-					<div id="social-icons" class="row">
-						<h2 class="hidden">Redes Sociais</h2>
-						<ul class="pull-right">
-							<li class="portalredes-item"><a title="Twitter" href="https://twitter.com/twitter">
-							<i class="icon-twitter-sign"><span>Twitter</span></i></a>
-							</li>
-							<li class="portalredes-item"><a title="YouTube" href="http://youtube.com/youtube">
-							<i class="icon-youtube"><span>Youtube</span></i></a>
-							</li>
-							<li class="portalredes-item"><a title="Facebook" href="http://facebook.com/facebook">
-							<i class="icon-facebook-sign"><span>Facebook</span></i></a>
-							</li>
-							<li class="portalredes-item"><a title="Flickr" href="http://flickr.com/flickr">
-							<i class="icon-flickr"><span>Flickr</span></i></a>
-							</li>
-						</ul>
-					</div>
-					<!-- fim div#social-icons.row -->
-				</div>
-				<!-- fim .span4 -->
-			</div>
-			<!-- fim .row-fluid -->
-		</div>
-		<!-- fim div.container2 -->
+               <div id="social-icons" class="row">
+                  <h2 class="hidden">Redes Sociais</h2>
+                  <ul class="pull-right">
+                     <li class="portalredes-item"><a title="Twitter" href="https://twitter.com/twitter">
+                     <i class="icon-twitter-sign"><span>Twitter</span></i></a>
+                     </li>
+                     <li class="portalredes-item"><a title="YouTube" href="http://youtube.com/youtube">
+                     <i class="icon-youtube"><span>Youtube</span></i></a>
+                     </li>
+                     <li class="portalredes-item"><a title="Facebook" href="http://facebook.com/facebook">
+                     <i class="icon-facebook-sign"><span>Facebook</span></i></a>
+                     </li>
+                     <li class="portalredes-item"><a title="Flickr" href="http://flickr.com/flickr">
+                     <i class="icon-flickr"><span>Flickr</span></i></a>
+                     </li>
+                  </ul>
+               </div>
+               <!-- fim div#social-icons.row -->
+            </div>
+            <!-- fim .span4 -->
+         </div>
+         <!-- fim .row-fluid -->
+      </div>
+      <!-- fim div.container2 -->
 
-	<!-- fim .sobre -->
-	<!--fim barra de navegacao modelo colab01-->
-	    
+   <!-- fim .sobre -->
+   <!--fim barra de navegacao modelo colab01-->
 
-		<nav class="navbar navbar-default"  role="navigation"> <!--remove navbar-fixed-top-->
-		    <div class="container">
-		        <div class="navbar-header">
 
-			<!--  <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-main">
-			    <span class="sr-only">Toggle navigation</span>
-			    <span class="icon-bar"></span>
-			    <span class="icon-bar"></span>
-			    <span class="icon-bar"></span>
-			    <span class="icon-bar"></span>
-			  </button>
-			  <a class="navbar-brand" href="/"><img alt="Colab" src="/static/img/logo_nav.png"></a> -->
-			</div>
-			<div class="collapse navbar-collapse navbar-main">
-			  <ul class="nav navbar-nav">
-			    <!--<li>
-			      <a href="/timeline">{% trans "Timeline" %}</a>
-			    </li> -->
-			    <li>
-			      <a href="{% url 'thread_list' %}">{% trans "Groups" %}</a>
-			    </li>
-			    <li>
-			      <a href="{% url "feedzilla_index" %}">{% trans "Blogs" %}</a>
-			    </li>
-			    <li class="dropdown">
-			      <a href="#" class="dropdown-toggle" data-toggle="dropdown">{% trans "Gitlab" %} <b class="caret"></b></a>
-			      <ul class="dropdown-menu">
-				{% if user.is_active %}
-				    <li><a href="/gitlab/dashboard/projects">{% trans "Projects" %}</a></li>
-				    <li><a href="/gitlab/dashboard/issues">{% trans "Issues" %}</a></li>
-				    <li><a href="/gitlab/dashboard/merge_requests">{% trans "Merge Requests" %}</a></li>
-				{% else %}
-				    {% trans 'Login' as login_text %}
-				    <li>{% browserid_login text=login_text %}</li>
-				{% endif %}
-			      </ul>
-			    </li>
-			    <li class="dropdown">
-			      <a href="#" class="dropdown-toggle" data-toggle="dropdown">{% trans "Redmine" %} <b class="caret"></b></a>
-			      <ul class="dropdown-menu">
-				{% if user.is_active %}
-				    <li><a href="/redmine/projects">{% trans "Projects" %}</a></li>
-				{% else %}
-				    {% trans 'Login' as login_text %}
-				    <li>{% browserid_login text=login_text %}</li>
-				{% endif %}
-			      </ul>
-			    </li>
-			    <li class="dropdown">
-			      <a href="#" class="dropdown-toggle" data-toggle="dropdown">{% trans "Contribute" %} <b class="caret"></b></a>
-			      <ul class="dropdown-menu">
-				<li><a href="/wiki">Wiki</a></li>
-				{% if user.is_active %}
-				<li><a href="/wiki/WikiNewPage">{% trans "New Wiki Page" %}</a></li>
-				{% endif %}
-				<li><a href="/report">{% trans "View Tickets" %}</a></li>
-				{% if user.is_active %}
-				<li><a href="/newticket">{% trans "New Ticket" %}</a></li>
-				{% endif %}
-				<li><a href="/roadmap">{% trans "Roadmap" %}</a></li>
-				<li><a href="/browser">{% trans "Browse Source" %}</a></li>
-				<li><a href="/ci">{% trans "Continuous Integration" %}</a></li>
-			      </ul>
-			    </li>
-			    <li class="hidden-lg hidden-md">
-			      <a href="{% url 'haystack_search' %}?q=">{% trans "Search" %}</a>
-			    </li>
-			  </ul>
+      <nav class="navbar navbar-default"  role="navigation"> <!--remove navbar-fixed-top-->
+          <div class="container">
+         <div class="collapse navbar-collapse navbar-main">
+           <ul class="nav navbar-nav">
+             <li>
+               <a href="{% url 'thread_list' %}">{% trans "Groups" %}</a>
+             </li>
+             <li>
+               <a href="{% url "feedzilla_index" %}">{% trans "Blogs" %}</a>
+             </li>
+             <li class="dropdown">
+               <a href="#" class="dropdown-toggle" data-toggle="dropdown">{% trans "Git" %} <b class="caret"></b></a>
+               <ul class="dropdown-menu">
+                    <li><a href="/gitlab/public/projects">{% trans "Public Projects" %}</a></li>
+            {% if user.is_active %}
+                     <li><a href="/gitlab/profile">{% trans "Profile" %}</a></li>
+                     <li><a href="/gitlab/projects/new">{% trans "New Project" %}</a></li>
 
-			  <ul class="nav navbar-nav navbar-right">
-			    {% if not user.is_authenticated %}
-			      <li id="ali-menu"><a href="{% url 'signup' %}">{% trans "Register" %}</a></li>
-			      {% trans 'Login' as login_text %}
-			      <li id="ali-menu">{% browserid_login text=login_text %}</li>
-			    {% else %}
-			      <li id="user-menu" class="dropdown">
-				<a href="#" class="dropdown-toggle user" data-toggle="dropdown">{% gravatar user.email 25 %} <b class="caret"></b>&nbsp;&nbsp;</a>
-				<ul class="dropdown-menu" role="menu">
-				  <li>
-				    <div class="wrapper">
-				      <div class="thumbnail">{% gravatar user.email 100 %}</div>
-				      <div class="user-info">
-				        <span><b>{{ user.get_full_name }}</b></span>
-				        <span class="quiet">{{ user.email }}</span>
-				      </div>
-				      <div>
-				        <a class="btn btn-info pull-left" href="{% url 'user_profile' user.username %}">{% trans "My Profile" %}</a>
-				        {% trans 'Logout' as logout_text %}
-				        {% browserid_logout text=logout_text link_class='btn btn-default pull-right' %}
-				      </div>
-				    </div> <!-- Fecha div wrapper -->
-				  </li>
-				</ul> <!-- Fecha ul dropdown-menu -->
-			      </li> <!-- user-menu -->
-			    {% endif %}
-			  </ul> <!-- fecha ul navbar-nav -->
+                <li><a href="/gitlab/dashboard/projects">{% trans "Projects" %}</a></li>
+                <li><a href="/gitlab/dashboard/issues">{% trans "Issues" %}</a></li>
+                <li><a href="/gitlab/dashboard/merge_requests">{% trans "Merge Requests" %}</a></li>
+            {% endif %}
+               </ul>
+             </li>
+             <li class="dropdown">
+               <a href="#" class="dropdown-toggle" data-toggle="dropdown">{% trans "Projects Management" %} <b class="caret"></b></a>
+               <ul class="dropdown-menu">
+            {% if user.is_active %}
+                <li><a href="/redmine/projects">{% trans "Projects" %}</a></li>
+            {% else %}
+                {% trans 'Login' as login_text %}
+                <li>{% browserid_login text=login_text %}</li>
+            {% endif %}
+               </ul>
+             </li>
+             <li class="hidden-lg hidden-md">
+               <a href="{% url 'haystack_search' %}?q=">{% trans "Search" %}</a>
+             </li>
+           </ul>
 
-		      <!-- <form action="{% url 'haystack_search' %}" method="GET" id="search-form" class="navbar-form navbar-right hidden-xs hidden-sm" role="search">
-			      <div class="form-group">
-			      <label class="sr-only" for="header-searchbox">{% trans 'Search here...' %}</label>
-			      <input name="q" id="header-searchbox"
-				     class="form-control" value="{{ request.GET.q }}"
-				     type="search" placeholder="{% trans 'Search here...' %}" />
-			    </div> 
-			    <button type="submit" class="btn btn-default"><span class="glyphicon glyphicon-search"></span></button> 
-			  </form>-->
+           <ul class="nav navbar-nav navbar-right">
+             {% if not user.is_authenticated %}
+               <li id="ali-menu"><a href="{% url 'signup' %}">{% trans "Register" %}</a></li>
+               {% trans 'Login' as login_text %}
+               <li id="ali-menu">{% browserid_login text=login_text %}</li>
+             {% else %}
+               <li id="user-menu" class="dropdown">
+            <a href="#" class="dropdown-toggle user" data-toggle="dropdown">{% gravatar user.email 25 %} <b class="caret"></b>&nbsp;&nbsp;</a>
+            <ul class="dropdown-menu" role="menu">
+              <li>
+                <div class="wrapper">
+                  <div class="thumbnail">{% gravatar user.email 100 %}</div>
+                  <div class="user-info">
+                    <span><b>{{ user.get_full_name }}</b></span>
+                    <span class="quiet">{{ user.email }}</span>
+                  </div>
+                  <div>
+                    <a class="btn btn-info pull-left" href="{% url 'user_profile' user.username %}">{% trans "My Profile" %}</a>
+                    {% trans 'Logout' as logout_text %}
+                    {% browserid_logout text=logout_text link_class='btn btn-default pull-right' %}
+                  </div>
+                </div> <!-- Fecha div wrapper -->
+              </li>
+            </ul> <!-- Fecha ul dropdown-menu -->
+               </li> <!-- user-menu -->
+             {% endif %}
+           </ul> <!-- fecha ul navbar-nav -->
 
-			</div> <!-- navbar-collapse -->
-	      	</div> <!-- container -->
-	    </nav> <!-- navbar-default -->
-	</header>
+         </div> <!-- navbar-collapse -->
+            </div> <!-- container -->
+       </nav> <!-- navbar-default -->
+   </header>
 </nav>
     {% endblock %}
 
@@ -332,20 +290,9 @@
     <div class="row">&nbsp;</div>
 
     {% block footer %}
-   <!-- <div class="row">
-      <p class="col-lg-12 text-center">
-        <a href="{% url 'opendata' %}"><img src="{{ STATIC_URL }}img/opendata3.png"/></a>
-      </p>
       {% if user.is_staff %}
       <p class="col-lg-12 text-center">{% trans "Last email imported at" %} {{ last_imported_message.received_time|date:'DATETIME_FORMAT' }}</p>
       {% endif %}
-      <p class="col-lg-12 text-center">
-        {% trans "The contents of this site is published under license" %}
-        <a href="http://creativecommons.org/licenses/by-nc-sa/2.0/br/">
-          {% trans "Creative Commons - attribution, non-commercial" %}
-        </a>
-      </p>
-    </div> -->
     {% endblock %}
 
 
@@ -359,125 +306,124 @@
 
 <!-- footer colab01 -->
 <footer>
-    		<div class="footer-atalhos">
-    			<div class="container2">
-    				<div class="pull-right voltar-ao-topo"><a href="#portal-siteactions"><i class="icon-chevron-up"></i>&nbsp;Voltar para o topo</a></div>
-    			</div>
-    		</div>
-    		<div class="container2 container-menus">
-    			<div id="footer-colab" class="row footer-menus">
-    				<span class="hide">Início da navegação de rodapé</span>
-    				<div class="span3">
-						<nav class="row assuntos ">
-							<h2>Assuntos</h2>
-							<ul>
-								<li><a href="#" title="Editoria A">Editoria A</a></li>
-								<li><a href="#" title="Editoria B">Editoria B</a></li>
-								<li><a href="#" title="Editoria C">Editoria C</a></li>								
-							</ul>
-						</nav>    					
-    				</div>
-					<div class="span3">
-						<nav class="row servicos ">
-							<h2>Serviços</h2>
-							<ul>
-								<li class="portalservicos-item">
-									<a title="Perguntas frequentes" href="#">Perguntas frequentes</a>
-								</li>
-								<li class="portalservicos-item">
-									<a title="Contato" href="#">Contato</a>
-								</li>
-								<li class="portalservicos-item">
-									<a title="Serviços da [Denominação]" href="#">Serviços da [Denominação]</a>
-								</li>
-								<li class="portalservicos-item">
-									<a title="Dados abertos" href="#">Dados abertos</a>
-								</li>
-								<li class="portalservicos-item">
-									<a title="Área de imprensa" href="#">Área de imprensa</a>
-								</li>
-							</ul>
-						</nav>							
-					</div>
-					<div class="span3">
-						<nav class="row redes-sociais ">
-							<h2>Redes Sociais</h2>
-							<ul>
-								<li class="portalredes-item"><a title="Twitter" href="https://twitter.com/twitter">
-	    							Twitter</a>
-	    						</li>
-	    						<li class="portalredes-item"><a title="YouTube" href="http://youtube.com/youtube">
-	    							Youtube</a>
-	    						</li>
-	    						<li class="portalredes-item"><a title="Facebook" href="http://facebook.com/facebook">
-	    							Facebook</a>
-	    						</li>
-	    						<li class="portalredes-item"><a title="Flickr" href="http://flickr.com/flickr">
-	    							Flickr</a>
-	    						</li>
-							</ul>
-						</nav>						
-					</div>
-					<div class="span3">
-						<nav class="row rss ">
-							<h2>RSS</h2>
-							<ul>
-								<li><a href="#" title="O que é?">O que é?</a></li>
-								<li><a href="#" title="Assine">Assine</a></li>
-							</ul>
-						</nav>
-						<nav class="row sobre ">
-							<h2>Navegação</h2>
-							<ul>
-								<li><a href="#">Acessibilidade</a></li>
-								<li><a href="#">Mapa do site</a></li>
-								<li><a href="#">Versión en Español</a></li>
-								<li><a href="#">English version</a></li>
-							</ul>
-						</nav>
-					</div>
-					<span class="hide">Fim da navegação de rodapé</span>					
-    			</div>
-    			<!-- fim .row -->
-    		</div>
-    		<!-- fim .container2 -->
-			<div class="footer-logos">
-				<div class="container2">
-	<a href="http://www.acessoainformacao.gov.br/" class="logo-acesso pull-left"><img src="{{ STATIC_URL }}images/acesso-a-informacao.png" alt="Acesso a Informação"></a>
-	<!-- separador para fins de acessibilidade -->
-	<span class="hide">&nbsp;</span>
-	<!-- fim separador para fins de acessibilidade -->
-					<a href="http://www.brasil.gov.br/" class="brasil pull-right"><img src="{{ STATIC_URL }}images/brasil.png" alt="Brasil - Governo Federal"></a>
-				</div>				
-			</div>		
+          <div class="footer-atalhos">
+             <div class="container2">
+                <div class="pull-right voltar-ao-topo"><a href="#portal-siteactions"><i class="icon-chevron-up"></i>&nbsp;Voltar para o topo</a></div>
+             </div>
+          </div>
+          <div class="container2 container-menus">
+             <div id="footer-colab" class="row footer-menus">
+                <span class="hide">Início da navegação de rodapé</span>
+                <div class="span3">
+                  <nav class="row assuntos ">
+                     <h2>Assuntos</h2>
+                     <ul>
+                        <li><a href="#" title="Editoria A">Editoria A</a></li>
+                        <li><a href="#" title="Editoria B">Editoria B</a></li>
+                        <li><a href="#" title="Editoria C">Editoria C</a></li>
+                     </ul>
+                  </nav>
+                </div>
+               <div class="span3">
+                  <nav class="row servicos ">
+                     <h2>Serviços</h2>
+                     <ul>
+                        <li class="portalservicos-item">
+                           <a title="Perguntas frequentes" href="#">Perguntas frequentes</a>
+                        </li>
+                        <li class="portalservicos-item">
+                           <a title="Contato" href="#">Contato</a>
+                        </li>
+                        <li class="portalservicos-item">
+                           <a title="Serviços da [Denominação]" href="#">Serviços da [Denominação]</a>
+                        </li>
+                        <li class="portalservicos-item">
+                           <a title="Dados abertos" href="#">Dados abertos</a>
+                        </li>
+                        <li class="portalservicos-item">
+                           <a title="Área de imprensa" href="#">Área de imprensa</a>
+                        </li>
+                     </ul>
+                  </nav>
+               </div>
+               <div class="span3">
+                  <nav class="row redes-sociais ">
+                     <h2>Redes Sociais</h2>
+                     <ul>
+                        <li class="portalredes-item"><a title="Twitter" href="https://twitter.com/twitter">
+                            Twitter</a>
+                         </li>
+                         <li class="portalredes-item"><a title="YouTube" href="http://youtube.com/youtube">
+                            Youtube</a>
+                         </li>
+                         <li class="portalredes-item"><a title="Facebook" href="http://facebook.com/facebook">
+                            Facebook</a>
+                         </li>
+                         <li class="portalredes-item"><a title="Flickr" href="http://flickr.com/flickr">
+                            Flickr</a>
+                         </li>
+                     </ul>
+                  </nav>
+               </div>
+               <div class="span3">
+                  <nav class="row rss ">
+                     <h2>RSS</h2>
+                     <ul>
+                        <li><a href="#" title="O que é?">O que é?</a></li>
+                        <li><a href="#" title="Assine">Assine</a></li>
+                     </ul>
+                  </nav>
+                  <nav class="row sobre ">
+                     <h2>Navegação</h2>
+                     <ul>
+                        <li><a href="#">Acessibilidade</a></li>
+                        <li><a href="#">Mapa do site</a></li>
+                        <li><a href="#">Versión en Español</a></li>
+                        <li><a href="#">English version</a></li>
+                     </ul>
+                  </nav>
+               </div>
+               <span class="hide">Fim da navegação de rodapé</span>
+             </div>
+             <!-- fim .row -->
+          </div>
+          <!-- fim .container2 -->
+         <div class="footer-logos">
+            <div class="container2">
+   <a href="http://www.acessoainformacao.gov.br/" class="logo-acesso pull-left"><img src="{{ STATIC_URL }}img/acesso-a-informacao.png" alt="Acesso a Informação"></a>
+   <!-- separador para fins de acessibilidade -->
+   <span class="hide">&nbsp;</span>
+   <!-- fim separador para fins de acessibilidade -->
+               <a href="http://www.brasil.gov.br/" class="brasil pull-right"><img src="{{ STATIC_URL }}img/brasil.png" alt="Brasil - Governo Federal"></a>
+            </div>
+         </div>
 
-    		<div class="footer-atalhos visible-phone">
-    			<div class="container2">
-    				<span class="hide">Fim do conteúdo da página</span>
-    				<div class="pull-right voltar-ao-topo"><a href="#portal-siteactions"><i class="icon-chevron-up"></i>&nbsp;Voltar para o topo</a></div>
-    			</div>
-    		</div>
-    	</footer>		
+          <div class="footer-atalhos visible-phone">
+             <div class="container2">
+                <span class="hide">Fim do conteúdo da página</span>
+                <div class="pull-right voltar-ao-topo"><a href="#portal-siteactions"><i class="icon-chevron-up"></i>&nbsp;Voltar para o topo</a></div>
+             </div>
+          </div>
+       </footer>
 
 
-	<!-- fim div#wrapper -->	
-	<!-- scripts principais -->	
+   <!-- fim div#wrapper -->
+   <!-- scripts principais -->
 
-	<!--<script src="{{ STATIC_URL }}js/jquery-noconflict.js" type="text/javascript"></script>--><noscript>&nbsp;<!-- item para fins de acessibilidade --></noscript>
-
-	<!--<script src="{{ STATIC_URL }}third-party/jquery.cookie.js" type="text/javascript">--></script><noscript>&nbsp;<!-- item para fins de acessibilidade --></noscript>
-	<script src="{{ STATIC_URL }}js/template.js" type="text/javascript"></script><noscript>&nbsp;<!-- item para fins de acessibilidade --></noscript>
-	<script src="{{ STATIC_URL }}third-party/jplayer/jquery.jplayer.min.js" type="text/javascript"></script><noscript>&nbsp;<!-- item para fins de acessibilidade --></noscript>
-	<script type="text/javascript">
-	//<![CDATA[
-	jQuery(document).ready(function(){
-		urls = {mp3:"http://tv1-lnx-04.grupotv1.com/portalmodelo/conteudos-de-marcacao/audio-1-titulo-do-audio-1/audio-1-nome-do-audio.mp3"};	
-		playAudio("#jquery_jplayer_1", urls, "mp3", "jplayer/");
-	});
-	//]]>
-	</script><noscript>&nbsp;<!-- item para fins de acessibilidade --></noscript>
-	<!-- Script do portal Brasil deve ficar preferencialmente no rodape para nao atrasar o carregamento da pagina principal -->
-	<script src="http://barra.brasil.gov.br/barra.js?cor=verde" type="text/javascript"></script><noscript>&nbsp;<!-- item para fins de acessibilidade --></noscript>
+    <noscript>&nbsp;<!-- item para fins de acessibilidade --></noscript>
+    <noscript>&nbsp;<!-- item para fins de acessibilidade --></noscript>
+   <script src="{{ STATIC_URL }}js/template.js" type="text/javascript"></script><noscript>&nbsp;<!-- item para fins de acessibilidade --></noscript>
+   <script src="{{ STATIC_URL }}third-party/jplayer/jquery.jplayer.min.js" type="text/javascript"></script><noscript>&nbsp;<!-- item para fins de acessibilidade --></noscript>
+   <script type="text/javascript">
+   //<![CDATA[
+   jQuery(document).ready(function(){
+      urls = {mp3:"http://tv1-lnx-04.grupotv1.com/portalmodelo/conteudos-de-marcacao/audio-1-titulo-do-audio-1/audio-1-nome-do-audio.mp3"};
+      playAudio("#jquery_jplayer_1", urls, "mp3", "jplayer/");
+   });
+   //]]>
+   </script><noscript>&nbsp;<!-- item para fins de acessibilidade --></noscript>
+   <!-- Script do portal Brasil deve ficar preferencialmente no rodape para nao atrasar o carregamento da pagina principal -->
+   <script src="http://barra.brasil.gov.br/barra.js?cor=verde" type="text/javascript"></script><noscript>&nbsp;<!-- item para fins de acessibilidade --></noscript>
 
     <!--fim footer colab01-->
     <!--bloco da licenca -->

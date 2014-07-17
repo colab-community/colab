@@ -1,17 +1,17 @@
 /*Reajustes do Redmine*/
 
 #top-menu {
-	background: none; 
-	height: 1.8em;
-	background: none repeat scroll 0% 0% rgb(245, 245, 245);
+    background: none;
+    height: 1.8em;
+    background: none repeat scroll 0% 0% rgb(245, 245, 245);
 }
 #top-menu a{
-	color:#000000;
+    color:#000000;
 }
 #content #admin-menu li {
-	display:list-item;
+    display:list-item;
 }
 .bgr{
-	color:#000000; /*lembrar de excluir*/
+    color:#000000; /*lembrar de excluir*/
 }
 

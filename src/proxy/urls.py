@@ -1,7 +1,7 @@
 
 from django.conf.urls import patterns, include, url
 
-from .views import ProxyView, TracProxyView, JenkinsProxyView, GitlabProxyView, RedmineProxyView
+from .views import ProxyView, TracProxyView, JenkinsProxyView, GitlabProxyView, RedmineProxyView, SvnProxyView
 
 urlpatterns = patterns('',
     # Trac URLs
@@ -10,6 +10,9 @@ urlpatterns = patterns('',
 
     # Trac extra URLs
     url(r'^trac/(?P<path>.*)$', TracProxyView.as_view()),
+
+    #SVN
+    url(r'^svn/(?P<path>.*)$', SvnProxyView.as_view()),
 
     # Jenkins URLs
     url(r'^ci/(?P<path>.*)$', JenkinsProxyView.as_view()),
