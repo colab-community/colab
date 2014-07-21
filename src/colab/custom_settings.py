@@ -16,6 +16,7 @@ DJANGO_DATE_FORMAT_TO_JS = {
     'es': ('es', 'dd/MM/yyyy'),
 }
 
+FORCE_LANGUAGE = False
 LANGUAGE_CODE = 'en'
 
 # The absolute path to the folder containing the attachments
@@ -217,7 +218,6 @@ TEMPLATE_CONTEXT_PROCESSORS = (
 
 MIDDLEWARE_CLASSES = (
     'django.contrib.sessions.middleware.SessionMiddleware',
-    'django.middleware.locale.LocaleMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
@@ -324,3 +324,6 @@ try:
     from local_settings import *
 except ImportError:
     pass
+
+if not FORCE_LANGUAGE:
+    MIDDLEWARE_CLASSES = MIDDLEWARE_CLASSES + ('django.middleware.locale.LocaleMiddleware',)
