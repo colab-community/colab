@@ -339,6 +339,11 @@ header div.navbar-collapse {
 padding-right: 0px;
 padding-left: 0px;
 }
+/*barra Brasil*/
+#barra-brasil .brasil-flag {
+height:30px !important;
+}
+
 
 .new-dropdown ul li{ /*fazendo testes aqui*/ 
 position:absolute;
