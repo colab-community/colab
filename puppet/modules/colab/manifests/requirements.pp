@@ -40,7 +40,7 @@ class colab::requirements {
   package { 'pyOpenSSL':
     ensure   => installed,
     provider => pip,
-    require  => [Package['python-pip'], Package['python-dev'], Package['build-essential']],
+    require  => [Package['python-pip'], Package['python-dev'], Package['build-essential'], Package['libffi-dev']],
   }
 
   # links virtualenvwrapper to load automaticaly
@@ -56,6 +56,11 @@ class colab::requirements {
 
   # req for compiling every python pkg
   package { 'python-dev':
+    ensure => installed,
+  }
+
+  # req for compiling pyOpenSSL
+  package { 'libffi-dev':
     ensure => installed,
   }
 
