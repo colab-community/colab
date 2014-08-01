@@ -119,9 +119,9 @@
                   <li>
                   <a accesskey="5" href="/interna-acessibilidade.html">Acessibilidade</a>
                   </li>
-                  <li>
+                 <!-- <li>
                   <a accesskey="6" href="#" class="toggle-contraste">Alto Contraste</a>
-                  </li>
+                  </li> -->
                   <li>
                   <a accesskey="7" href="#">Mapa do Site</a>
                   </li>
@@ -139,7 +139,7 @@
             </div>
             <!-- fim .span8 -->
             <div class="span4">
-               <div id="portal-searchbox" class="row">
+             <!--  <div id="portal-searchbox" class="row">
                   <form action="{% url 'haystack_search' %}" method="GET" id="search-form" class="navbar-form navbar-right hidden-xs hidden-sm" role="search">
                      <fieldset class="fieldset-new">
                         <legend class="hide">Busca</legend>
@@ -153,11 +153,40 @@
                         </div>
                      </fieldset>
                   </form>
-               </div>
+               </div> -->
 
       <!-- fim div#portal-searchbox.row -->
+<!-- novo campo de busca -->
+<div id="portal-searchbox">
 
-               <div id="social-icons" class="row">
+    <form id="nolivesearchGadget_form" action="{% url 'haystack_search' %}">
+        <fieldset class="LSBox"><legend class="hiddenStructure">Buscar no portal</legend>
+            <label class="hiddenStructure" for="nolivesearchGadget">Busca</label>
+
+            <input name="q" size="18" title="Search Site" placeholder="Buscar no portal" class="searchField" id="nolivesearchGadget" type="text"><input class="searchButton" value="Buscar" type="submit">
+
+            <div class="LSResult" id="LSResult"><div class="LSShadow" id="LSShadow"></div></div>
+        </fieldset></form>
+
+    
+
+</div>
+<div id="social-icons">
+                <ul><li id="portalredes-facebook" class="portalredes-item">
+                <a href="http://facebook.com/facebook">Facebook</a>
+            </li><li id="portalredes-twitter" class="portalredes-item">
+                <a href="https://twitter.com/twiiter">Twitter</a>
+            </li><li id="portalredes-youtube" class="portalredes-item">
+                <a href="http://youtube.com/youtube">YouTube</a>
+            </li><li id="portalredes-flickr" class="portalredes-item">
+                <a href="http://flickr.com/flickr">Flickr</a>
+            </li></ul>
+</div>
+
+
+
+
+            <!--   <div id="social-icons" class="row">
                   <h2 class="hidden">Redes Sociais</h2>
                   <ul class="pull-right">
                      <li class="portalredes-item"><a title="Twitter" href="https://twitter.com/twitter">
@@ -173,7 +202,7 @@
                      <i class="icon-flickr"><span>Flickr</span></i></a>
                      </li>
                   </ul>
-               </div>
+               </div> -->
                <!-- fim div#social-icons.row -->
             </div>
             <!-- fim .span4 -->
