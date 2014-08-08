@@ -1,3 +1,5 @@
+@import url(http://fonts.googleapis.com/css?family=Open+Sans);
+
 article,aside,details,figcaption,figure,footer,header,hgroup,main,nav,section,summary {
 	display:block
 }
@@ -21,13 +23,14 @@ html {
 	-webkit-text-size-adjust:100%
 }
 html,button,input,select,textarea {
-	font-family:sans-serif
+	font-family:"Open Sans", sans-serif, monospace, fira mono; /*sans-serif*/
 }
 body {
 	margin:0
 	background-color:#fff;
 	color:#333;
-	font-family:"open_sansregular",'Open Sans',Arial,Helvetica,sans-serif
+	font-family:"Open Sans", sans-serif, monospace, fira mono;
+/*font-family:"open_sansregular",'Open Sans',Arial,Helvetica,sans-serif */
 }
 a:focus {
 	outline:thin dotted
@@ -90,7 +93,8 @@ footer ul li a {
 	}
 }
 h1,h2,h3,h4,h5,h6 {
-	font-family:"open_sanssemibold",'Open Sans',Arial,Helvetica,sans-serif;
+	font-family:"Open Sans", sans-serif, monospace, fira mono;
+	/*font-family:"open_sanssemibold",'Open Sans',Arial,Helvetica,sans-serif;*/
 	font-weight:700;
 	margin:0
 }
@@ -206,7 +210,8 @@ display:block;
 height:21px
 }
 header #logo h1 {
-font-family:"open_sansextrabold",'Open Sans',Arial,Helvetica,sans-serif;
+font-family:"Open Sans", sans-serif, monospace, fira mono;
+/*font-family:"open_sansextrabold",'Open Sans',Arial,Helvetica,sans-serif;*/
 font-size:2.75em;
 line-height:.8em;
 font-weight:800;
@@ -224,14 +229,16 @@ margin:13px 0 10px 0
 }
 header #logo.small h1 {
 font-size:2.4em;
-font-family:"open_sansbold",'Open Sans',Arial,Helvetica,sans-serif
+font-family:"Open Sans", sans-serif, monospace, fira mono;
+/*font-family:"open_sansbold",'Open Sans',Arial,Helvetica,sans-serif*/
 }
 header #logo.big {
 margin:10px 0 13px 0
 }
 header #logo.big h1 {
 font-size:3.6em;
-font-family:"open_sansbold",'Open Sans',Arial,Helvetica,sans-serif
+font-family:"Open Sans", sans-serif, monospace, fira mono;
+/*font-family:"open_sansbold",'Open Sans',Arial,Helvetica,sans-serif*/
 }
 
 /*barra brasil*/
@@ -269,8 +276,6 @@ font-size:1.25em;
 */
 
 
-
-
 /* */
 .LSBox {
 margin: 0;
@@ -298,8 +303,9 @@ width: 300px;
 border: none;
 border-right: none;
 font-size: 1.2em;
-font-family: "open_sansregular", Arial, Helvetica, sans-serif;
-box-shadow: none;
+font-family:"Open Sans", sans-serif, monospace, fira mono;
+/*font-family: "open_sansregular", Arial, Helvetica, sans-serif;
+box-shadow: none;*/
 }
 #portal-searchbox .searchSection label { cursor: pointer; }
 #searchGadget,
@@ -490,7 +496,8 @@ main .row-fluid {
 margin-left:0!important
 }
 main h2 {
-font-family:"open_sansregular",'Open Sans',Arial,Helvetica,sans-serif
+	font-family:"Open Sans", sans-serif, monospace, fira mono;
+/*font-family:"open_sansregular",'Open Sans',Arial,Helvetica,sans-serif*/
 }
 main #em-destaque {
 display:block;
@@ -1253,7 +1260,8 @@ main div.container .module h2,main div.container .module h3 {
 font-size:1.1em;
 line-height:1em;
 margin-bottom:5px;
-font-family:"open_sansregular",'Open Sans',Arial,Helvetica,sans-serif;
+font-family:"Open Sans", sans-serif, monospace, fira mono;
+/*font-family:"open_sansregular",'Open Sans',Arial,Helvetica,sans-serif;*/
 font-weight:400
 }
 main div.container .module h2 a,main div.container .module h3 a {
@@ -1405,7 +1413,8 @@ padding:10px 12px 2px 12px
 }
 main div.container .module-box-01 .header h2,main div.container .module-box-01 .header h3,main div.container .module-box-01 .header h4,main div.container .module-box-01 .header h4,main div.container .module-box-01 .header h6 {
 text-transform:uppercase;
-font-family:"open_sanssemibold",'Open Sans',Arial,Helvetica,sans-serif
+font-family:"Open Sans", sans-serif, monospace, fira mono;
+/*font-family:"open_sanssemibold",'Open Sans',Arial,Helvetica,sans-serif*/
 }
 main div.container .module-box-01 .lista {
 margin:0!important
@@ -2007,6 +2016,14 @@ max-height:500px
 #content.internas #content-links-modal .modal-footer {
 height:30px
 }
+
+/*campo de busca gitlab* REMOVER*/
+#issue_search.form-control {
+    width: 90%;
+    height: 30px;
+    padding:0px 0px ;
+}
+/****/
 .contraste {
 background-color:#0d0d0d!important;
 color:#fff
@@ -3024,7 +3041,8 @@ textarea {
 }
 body {
 	margin:0;
-	font-family:"Helvetica Neue",Helvetica,Arial,sans-serif;
+	font-family:"Open Sans", sans-serif, monospace, fira mono;
+	/*font-family:"Helvetica Neue",Helvetica,Arial,sans-serif;*/
 	font-size:14px;
 	line-height:20px;
 	color:#333333;
@@ -3475,6 +3493,22 @@ h3 small {
 h4 small {
 	font-size:14px;
 }
+
+/*medidas dos titulos Colab*/
+
+#main-content h2{
+font-size:20px;
+}
+
+#planet.row h3,h1{
+font-size:16px;
+}
+
+H3.column-align{
+font-size:20px;
+}
+/****fim****/
+
 .page-header {
 	padding-bottom:9px;
 	margin:20px 0 30px;
@@ -3600,7 +3634,8 @@ address {
 }
 code,pre {
 	padding:0 3px 2px;
-	font-family:Monaco,Menlo,Consolas,"Courier New",monospace;
+	font-family:"Open Sans", sans-serif, monospace, fira mono;
+	/*font-family:Monaco,Menlo,Consolas,"Courier New",monospace;*/
 	font-size:12px;
 	color:#333333;
 	-webkit-border-radius:3px;
@@ -3916,7 +3951,7 @@ legend {
 	width:100%;
 	padding:0;
 	margin-bottom:20px;
-	font-size:21px;
+	font-size:19px; /*21px;*/
 	line-height:40px;
 	color:#333333;
 	border:0;
@@ -3932,7 +3967,8 @@ label,input,button,select,textarea {
 	line-height:20px;
 }
 input,button,select,textarea {
-	font-family:"Helvetica Neue",Helvetica,Arial,sans-serif;
+	font-family:"Open Sans", sans-serif, monospace, fira mono;
+	/*font-family:"Helvetica Neue",Helvetica,Arial,sans-serif;*/
 }
 label {
 	/*display:block; Afetando o trac*/
@@ -5434,7 +5470,8 @@ button.btn.btn-mini,input[type="submit"].btn.btn-mini {
 .navbar-search .search-query {
 	margin-bottom:0;
 	padding:4px 14px;
-	font-family:"Helvetica Neue",Helvetica,Arial,sans-serif;
+	font-family:"Open Sans", sans-serif, monospace, fira mono;
+	/*font-family:"Helvetica Neue",Helvetica,Arial,sans-serif;*/
 	font-size:13px;
 	font-weight:normal;
 	line-height:1;

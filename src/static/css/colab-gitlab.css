@@ -1,0 +1,9 @@
+/*Ajustes do Gitlab*/
+
+
+/*campo de busca gitlab*/
+#issue_search.form-control {
+    width: 90%;
+    height: 30px;
+    padding:0px 0px ;
+}

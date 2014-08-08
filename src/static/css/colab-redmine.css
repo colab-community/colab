@@ -1,4 +1,4 @@
-/*Reajustes do Redmine*/
+/*Ajustes do Redmine*/
 
 #top-menu {
     background: none;
@@ -14,4 +14,40 @@
 .bgr{
     color:#000000; /*lembrar de excluir*/
 }
+
+
+/*
+#header{
+	backgroud-color: rgb(245,245,245);
+	color:#000000;
+	
+}
+#header a{
+	color:#000000;
+
+}
+
+#main-menu li a {
+	color:#000000;
+}
+
+#main-menu li a: houver {
+	color:#e4e4e4;
+}
+
+#main.sidebar{
+	backgroud-color: rgb(250,250,250);
+}
+
+.box{
+	backgroud-color: rgb(250,250,250);
+}
+
+#content {
+	border-right-style-value:none;
+}
+
+.wiki{
+	widht: 90%;
+} */
 
