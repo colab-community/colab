@@ -86,17 +86,17 @@
             <div class="span6 accessibility-container">
                <ul id="accessibility">
                   <li>
-                  <a accesskey="1" href="#content" id="link-conteudo">
+                  <a accesskey="1" href="#main-content" id="link-conteudo">
                   Ir para o conte&uacute;do <span>1</span>
                   </a>
                   </li>
                   <li>
-                  <a accesskey="2" href="#navigation" id="link-navegacao">
+                  <a accesskey="2" href="#navigation-colab" id="link-navegacao">
                   Ir para o menu <span>2</span>
                   </a>
                   </li>
                   <li>
-                  <a accesskey="3" href="#portal-searchbox" id="link-buscar">
+                  <a accesskey="3" href="#portal-searchbox" id="link-buscar" onclick="document.getElementById('nolivesearchGadget').focus(); return false;">
                   Ir para a busca <span>3</span>
                   </a>
                   </li>
@@ -217,7 +217,7 @@
    <!--fim barra de navegacao modelo colab01-->
 
 
-      <nav class="navbar navbar-default"  role="navigation"> <!--remove navbar-fixed-top-->
+      <nav id="navigation-colab"  class="navbar navbar-default"  role="navigation"> <!--remove navbar-fixed-top-->
           <div class="container">
          <div class="collapse navbar-collapse navbar-main">
            <ul class="nav navbar-nav">
