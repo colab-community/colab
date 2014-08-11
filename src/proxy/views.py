@@ -69,10 +69,3 @@ class RedmineProxyView(ProxyView):
     diazo_theme_template = 'proxy/redmine.html'
     diazo_rules = os.path.join(DIAZO_RULES_DIR, 'redmine.xml')
     html5 = True
-
-class SvnProxyView(ProxyView):
-     base_url = settings.COLAB_SVN_URL
-     add_remote_user = settings.REVPROXY_ADD_REMOTE_USER
-     diazo_theme_template = 'base.html'
-     diazo_rules = os.path.join(DIAZO_RULES_DIR, 'jenkins.xml')
-     html5 = True

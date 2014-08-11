@@ -15,13 +15,13 @@ html2text==3.200.3
 django-taggit==0.10
 python-memcached==1.53
 django-hitcounter==0.1.1
-Pillow==2.2.1
+Pillow==2.5.1
 django-i18n-model==0.0.7
 django-tastypie==0.11.0
 django-browserid==0.9
 
-gunicorn==18.0
-gevent==0.13.8
+gunicorn==19.1.0
+eventlet==0.15.0
 
 # Deps for sentry client (raven)
 raven==3.5.2
@@ -33,8 +33,7 @@ tornado==3.1.1
 django-revproxy==0.2.7
 
 # Converse.js (XMPP client)
-django-conversejs==0.3
-git+https://github.com/TracyWebTech/SleekXMPP@fix-gevent
+django-conversejs==0.3.1
 
 # Feedzilla (planet) and deps
 #feedzilla==0.22
@@ -47,8 +46,8 @@ grab==0.4.13
 transliterate==1.5
 
 # Diazo
-#diazo
-git+https://github.com/plone/diazo@44ca0da7de5a7ee5d4085c7344701b9cfecfb419
+diazo==1.0.5
 
 # Dpaste
+# TODO: Pull-request to mainstream repository
 git+https://github.com/interlegis/dpaste

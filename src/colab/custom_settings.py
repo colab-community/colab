@@ -16,7 +16,6 @@ DJANGO_DATE_FORMAT_TO_JS = {
     'es': ('es', 'dd/MM/yyyy'),
 }
 
-FORCE_LANGUAGE = False
 LANGUAGE_CODE = 'en'
 
 # The absolute path to the folder containing the attachments
@@ -78,13 +77,6 @@ DATABASES = {
         'PASSWORD': os.environ.get('COLAB_DEFAULT_DB_PWD'),
         'HOST': os.environ.get('COLAB_DEFAULT_DB_HOST'),
     },
-    'trac': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'trac_colab',
-        'USER': 'colab',
-        'PASSWORD': os.environ.get('COLAB_TRAC_DB_PWD'),
-        'HOST': os.environ.get('COLAB_TRAC_DB_HOST'),
-    }
 }
 
 CACHES = {
@@ -97,10 +89,12 @@ CACHES = {
 DATABASE_ROUTERS = ['colab.routers.TracRouter',]
 
 INSTALLED_APPS = INSTALLED_APPS + (
+    # First app to provide  AUTH_USER_MODEL to others
+    'accounts',
 
     # Not standard apps
-    'raven.contrib.django.raven_compat',
     'south',
+    'raven.contrib.django.raven_compat',
     'cliauth',
     'django_mobile',
     'django_browserid',
@@ -116,7 +110,6 @@ INSTALLED_APPS = INSTALLED_APPS + (
     'api',
     'rss',
     'planet',
-    'accounts',
     'proxy',
     'search',
     'badger',
@@ -218,6 +211,7 @@ TEMPLATE_CONTEXT_PROCESSORS = (
 
 MIDDLEWARE_CLASSES = (
     'django.contrib.sessions.middleware.SessionMiddleware',
+    'django.middleware.locale.LocaleMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
@@ -238,8 +232,8 @@ STATICFILES_DIRS = (
     os.path.join(BASE_DIR, 'static'),
 )
 
-STATIC_ROOT = os.path.join(BASE_DIR, '..', 'www', 'static')
-MEDIA_ROOT = os.path.join(BASE_DIR, '..', 'www', 'media')
+STATIC_ROOT = '/usr/share/nginx/colab/static/'
+MEDIA_ROOT = '/usr/share/nginx/colab/media/'
 
 TEMPLATE_DIRS = (
     os.path.join(BASE_DIR, 'templates'),
@@ -260,7 +254,6 @@ MESSAGE_TAGS = {
     messages.WARNING: 'alert-warning',
     messages.ERROR: 'alert-danger',
 }
-
 
 ### Feedzilla  (planet)
 from feedzilla.settings import *
@@ -286,11 +279,7 @@ BROWSERID_CREATE_USER = False
 
 
 ## Proxy settings
-COLAB_TRAC_URL = 'http://localhost:5000/trac/'
-COLAB_CI_URL = 'http://localhost:8080/ci/'
-COLAB_GITLAB_URL = 'http://localhost:8090/gitlab/'
-COLAB_REDMINE_URL = 'http://localhost:9080/redmine/'
-COLAB_SVN_URL = 'http://10.18.0.7:9000'
+COLAB_CI_URL = 'localhost:9000/ci/'
 
 REVPROXY_ADD_REMOTE_USER = True
 
@@ -320,10 +309,16 @@ DPASTE_EXPIRE_DEFAULT = DPASTE_EXPIRE_CHOICES[4][0]
 DPASTE_DEFAULT_GIST_DESCRIPTION = 'Gist created on Colab Interlegis'
 DPASTE_DEFAULT_GIST_NAME = 'colab_paste'
 
+
+### Trac
+TRAC_ENABLED = False
+
 try:
     from local_settings import *
 except ImportError:
     pass
 
-if not FORCE_LANGUAGE:
-    MIDDLEWARE_CLASSES = MIDDLEWARE_CLASSES + ('django.middleware.locale.LocaleMiddleware',)
+if TRAC_ENABLED:
+    INSTALLED_APPS = INSTALLED_APPS + (
+        'proxy.trac',
+    )

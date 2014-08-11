@@ -1,5 +1,8 @@
 <!DOCTYPE html>
-{% load i18n browserid conversejs gravatar %}
+{% load i18n browserid conversejs gravatar proxy %}
+
+{% is_trac_enable as is_trac %}
+
 <html>
   <head>
   {% block head %}

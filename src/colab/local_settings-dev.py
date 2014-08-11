@@ -27,8 +27,14 @@ CONVERSEJS_BOSH_SERVICE_URL = 'http://localhost:5280/http-bind'
 
 DATABASES['default']['PASSWORD'] = 'colab'
 DATABASES['default']['HOST'] = 'localhost'
-DATABASES['trac']['PASSWORD'] = 'colab'
-DATABASES['trac']['HOST'] = 'localhost'
+
+TRAC_ENABLED = False
+
+if TRAC_ENABLED:
+    from trac_settings import *
+    DATABASES['trac'] = TRAC_DATABASE
+    DATABASES['trac']['PASSWORD'] = 'colab'
+    DATABASES['trac']['HOST'] = 'localhost'
 
 HAYSTACK_CONNECTIONS['default']['URL'] = 'http://localhost:8983/solr/'
 

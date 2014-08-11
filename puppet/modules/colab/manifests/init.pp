@@ -1,90 +1,64 @@
 
-class colab {
-  # Common
-  include apt
-  include ps1
-  include vim
+class colab (
+  $mailman_archive_path = 'default',
+  $mailman_exclude_lists = [],
+  $hostnames = [],
+  $solr_project_path = '',
+){
+
+  require pip
+  require appdeploy::deps::python
+  require appdeploy::deps::essential
+  require appdeploy::deps::openssl
+
   include ntp
-  include locale
-  include timezone
-  include postfix
-
-  include supervisor
-  include colab::requirements
+  include security_updates
+  include appdeploy::deps::lxml
+  include appdeploy::deps::postgresql
   include colab::cronjobs
+  include postgresql::globals
+  include postgresql::server
 
-  apt::ppa { 'ppa:nginx/stable': }
-
-  class { 'nginx':
-    require => Apt::Ppa['ppa:nginx/stable'],
+  postgresql::server::db { 'colab':
+    user     => 'colab',
+    password => 'colab',
+    grant    => 'all',
   }
 
-  Mailalias {
-    notify  => Exec['newaliases'],
-    require => Class['postfix'],
-  }
-
-  exec { 'newaliases':
-    command     => 'sendmail -bi',
-    path        => '/usr/sbin',
-    refreshonly => true,
-  }
-
-  group { 'colab':
-    ensure => present,
-  }
-
-  user { 'colab':
-    ensure     => present,
-    managehome => true,
-    shell      => '/bin/bash',
-    gid        => 'colab',
-    groups     => ['sudo'],
-  }
-
-  mailalias { 'colab':
-    ensure    => present,
-    recipient => 'root',
-  }
-
-  file { 'colab-sudoers':
-    ensure  => present,
-    path    => '/etc/sudoers.d/colab-sudoers',
-    source  => 'puppet:///modules/colab/colab-sudoers',
-    mode    => '0440',
-    owner   => root,
-    group   => root,
-  }
-
-  file { 'root-ssh-dir':
-    ensure => directory,
-    mode   => '0700',
-    path   => '/root/.ssh',
-  }
-
-  # Should generate instead of copying
-  #file { 'root-ssh-private-key':
-  #  ensure  => present,
-  #  mode    => '0600',
-  #  path    => '/root/.ssh/id_rsa',
-  #  source  => 'puppet:///modules/colab/root_id_rsa',
-  #  owner   => root,
-  #  group   => root,
-  #}
-
-  #file { 'root-ssh-public-key':
-  #  ensure  => present,
-  #  mode    => '0644',
-  #  path    => '/root/.ssh/id_rsa.pub',
-  #  source  => 'puppet:///modules/colab/root_id_rsa.pub',
-  #  owner   => root,
-  #  group   => root,
-  #}
-
-  supervisor::app { 'colab':
-    command   => '/home/colab/.virtualenvs/colab/bin/gunicorn colab.wsgi:application -c colab/gunicorn.conf.py',
-    directory => '/home/colab/colab/src/',
+  appdeploy::django { 'colab':
     user      => 'colab',
+    directory => '/home/colab/colab/src',
+    proxy_hosts => $colab::hostnames,
+  }
+
+  file { '/etc/nginx/conf.d/default.conf':
+    ensure => 'absent',
+    notify => Service['nginx'],
+  }
+
+  $package_defaults = {
+    before => Pip::Install['pyOpenSSL'],
+  }
+
+  case $osfamily {
+
+    'Redhat': {
+      ensure_packages(['java-1.7.0-openjdk', 'fuse-sshfs'], $package_defaults)
+    }
+    'Debian': {
+      ensure_packages(['openjdk-7-jre', 'sshfs'], $package_defaults)
+    }
+  }
+
+  ensure_packages(['memcached'])
+
+  # Punjab dep
+  pip::install { 'Twisted': }
+  pip::install { 'pyOpenSSL': }
+
+  # XMPP connection manager
+  pip::install { 'punjab':
+    require => Pip::Install['Twisted', 'pyOpenSSL'],
   }
 
   supervisor::app { 'punjab':
@@ -95,15 +69,7 @@ class colab {
 
   supervisor::app { 'solr':
     command   => 'java -jar start.jar',
-    directory => '/home/colab/apache-solr-3.6.2/example',
+    directory => $colab::solr_project_path,
     user      => 'colab',
-  }
-
-  nginx::config { 'nginx':
-    content => template('colab/nginx/extra_conf.erb'),
-  }
-
-  nginx::site { '000-colab':
-    content => template('colab/nginx/site_default.erb'),
   }
 }
