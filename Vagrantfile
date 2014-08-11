@@ -6,7 +6,7 @@
 # - trusty64
 # - centos6.5
 
-distro = "precise64"
+distro = "centos6.5"
 
 # Vagrantfile API/syntax version. Don't touch unless you know what you're doing!
 VAGRANTFILE_API_VERSION = "2"
