@@ -24,7 +24,7 @@ DISTRO_CMD = {
 }
 
 APP_USER = APP_NAME = VENV_NAME = 'colab'
-REPO_URL = 'git@github.com:colab-community/colab.git'
+REPO_URL = 'https://github.com/colab-community/colab.git'
 
 
 environments = {
@@ -159,7 +159,6 @@ def update_code():
     else:
         with cd(REPO_PATH):
             run('git pull')
-
 
 @task
 def bootstrap():
