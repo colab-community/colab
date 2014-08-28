@@ -25,7 +25,7 @@ DISTRO_CMD = {
 
 APP_USER = APP_NAME = VENV_NAME = 'colab'
 REPO_URL = 'https://github.com/colab-community/colab.git'
-REPO_BRANCH = 'master'
+REPO_BRANCH = 'softwarepublico'
 
 
 environments = {
