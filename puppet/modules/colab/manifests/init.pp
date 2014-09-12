@@ -4,6 +4,8 @@ class colab (
   $mailman_exclude_lists = [],
   $hostnames = [],
   $solr_project_path = '',
+  $mailman_ip = '127.0.0.1',
+  $mailman_port = 8025
 ){
 
   require pip
@@ -11,6 +13,7 @@ class colab (
   require appdeploy::deps::essential
   require appdeploy::deps::openssl
 
+  include nginx
   include ntp
   include security_updates
   include appdeploy::deps::lxml
@@ -67,4 +70,17 @@ class colab (
     directory => $colab::solr_project_path,
     user      => 'colab',
   }
+
+  nginx::resource::upstream { 'mailman-upstream':
+    ensure  => present,
+    members => ["$mailman_ip:$mailman_port"],
+  }
+
+  nginx::resource::location { 'lists':
+    ensure   => present,
+    vhost    => 'colab',
+    location => '/lists/',
+    proxy    => 'http://mailman-upstream/mailman/cgi-bin/',
+  }
+
 }
