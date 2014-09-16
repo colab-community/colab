@@ -150,8 +150,12 @@ def create_local_settings():
 
 def update_code():
     if env.is_vagrant:
+        run('mkdir -p {}'.format(os.path.dirname(REPO_PATH)))
         if not exists(REPO_PATH):
-            run('ln -s /vagrant/ {}'.format(REPO_PATH))
+            if exists('/vagrant/colab'):
+                run('ln -s /vagrant/colab {}'.format(REPO_PATH))
+            else:
+                run('ln -s /vagrant {}'.format(REPO_PATH))
         return
 
     if not exists(REPO_PATH):
