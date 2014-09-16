@@ -184,7 +184,7 @@ def bootstrap():
         for group in groups:
             sudo('groupadd -f {}'.format(group))
 
-        command = 'useradd {} -G {} -m -s /bin/bash'
+        command = 'useradd {} -G {} -m -s /bin/bash || true'
         sudo(command.format(APP_USER, ','.join(groups)))
 
         ssh_dir = '/home/{0}/.ssh/'.format(APP_USER)
