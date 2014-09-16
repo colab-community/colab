@@ -175,6 +175,9 @@ def bootstrap():
         if not exists('/usr/bin/git'):
             package_install('git-core')
 
+        if not exists('/bin/tar'):
+            package_install('tar')
+
         if env.is_vagrant:
             groups = ['sudo', 'vagrant']
             local('chmod -fR g+w {}'.format(PROJECT_PATH))
