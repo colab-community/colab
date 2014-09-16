@@ -1,5 +1,6 @@
 # coding: utf-8
 
+import json
 import os
 
 from fabric import colors
@@ -28,15 +29,11 @@ REPO_URL = 'https://github.com/colab-community/colab.git'
 REPO_BRANCH = 'softwarepublico'
 
 
-environments = {
-    'dev': {
-        'hosts': ['127.0.0.1'],
-        'key_filename': '~/.vagrant.d/insecure_private_key',
-        'port': 2222,
-        'is_vagrant': True,
-        'superuser': 'vagrant',
-    },
-}
+if os.path.exists('environments.json'):
+    environments_file = 'environments.json'
+else:
+    environments_file = 'environments.json.dist'
+environments = json.load(open(environments_file))
 DEFAULT_ENVIRONMENT = 'dev'
 
 env.user = APP_USER
