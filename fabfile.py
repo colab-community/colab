@@ -1,5 +1,6 @@
 # coding: utf-8
 
+import json
 import os
 
 from fabric import colors
@@ -28,15 +29,11 @@ REPO_URL = 'https://github.com/colab-community/colab.git'
 REPO_BRANCH = 'softwarepublico'
 
 
-environments = {
-    'dev': {
-        'hosts': ['127.0.0.1'],
-        'key_filename': '~/.vagrant.d/insecure_private_key',
-        'port': 2222,
-        'is_vagrant': True,
-        'superuser': 'vagrant',
-    },
-}
+if os.path.exists('environments.json'):
+    environments_file = 'environments.json'
+else:
+    environments_file = 'environments.json.dist'
+environments = json.load(open(environments_file))
 DEFAULT_ENVIRONMENT = 'dev'
 
 env.user = APP_USER
@@ -153,8 +150,12 @@ def create_local_settings():
 
 def update_code():
     if env.is_vagrant:
+        run('mkdir -p {}'.format(os.path.dirname(REPO_PATH)))
         if not exists(REPO_PATH):
-            run('ln -s /vagrant/ {}'.format(REPO_PATH))
+            if exists('/vagrant/colab'):
+                run('ln -s /vagrant/colab {}'.format(REPO_PATH))
+            else:
+                run('ln -s /vagrant {}'.format(REPO_PATH))
         return
 
     if not exists(REPO_PATH):
@@ -178,16 +179,14 @@ def bootstrap():
         if not exists('/usr/bin/git'):
             package_install('git-core')
 
-        if env.is_vagrant:
-            groups = ['sudo', 'vagrant']
-            local('chmod -fR g+w {}'.format(PROJECT_PATH))
-        else:
-            groups = ['sudo']
+        if not exists('/bin/tar'):
+            package_install('tar')
 
+        groups = ['sudo']
         for group in groups:
             sudo('groupadd -f {}'.format(group))
 
-        command = 'useradd {} -G {} -m -s /bin/bash'
+        command = 'useradd {} -G {} -m -s /bin/bash || true'
         sudo(command.format(APP_USER, ','.join(groups)))
 
         ssh_dir = '/home/{0}/.ssh/'.format(APP_USER)

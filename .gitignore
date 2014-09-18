@@ -12,3 +12,5 @@ project_cfg.py
 .vagrant
 
 ext/
+
+environments.json
