@@ -202,7 +202,7 @@
     "md5": "edb0e96701c209ab4b50211c856c50c4",
     "address": "admin@mail.com"
   },
-  "model": "super_archives.emailaddress",
+  "model": "accounts.emailaddress",
   "pk": 1
 }
 ]
