@@ -10,9 +10,9 @@ import taggit.managers
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('accounts', '0007_auto_20151014_1803'),
+        ('taggit', '0002_auto_20150616_2121'),
+        ('accounts', '0001_initial'),
         migrations.swappable_dependency(settings.AUTH_USER_MODEL),
-        ('taggit', '0002_auto_20150929_2036'),
     ]
 
     operations = [
