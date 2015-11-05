@@ -18,8 +18,8 @@ from django.template.loader import render_to_string
 from django.utils.translation import ugettext as _
 
 from colab.super_archives.utils.email import colab_send_email
-from colab.super_archives.models import (MailingList, Message,
-                                         Thread, EmailAddress)
+from colab.super_archives.models import (MailingList, Message, Thread)
+from colab.accounts.models import EmailAddress
 from message import Message as CustomMessage
 
 

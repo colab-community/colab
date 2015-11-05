@@ -11,10 +11,8 @@ from django.core.exceptions import PermissionDenied
 from django.views.generic import DetailView, UpdateView
 from django.http import Http404
 
-from colab.super_archives.models import (EmailAddress,
-                                         EmailAddressValidation)
 from colab.search.utils import get_collaboration_data, get_visible_threads
-from colab.accounts.models import User
+from colab.accounts.models import (User, EmailAddress, EmailAddressValidation)
 
 from .forms import (UserCreationForm, ListsForm, UserUpdateForm)
 from .utils import mailman

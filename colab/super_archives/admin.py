@@ -1,6 +1,7 @@
 
 from django.contrib import admin
-from .models import MailingList, Message, Thread, EmailAddress
+from .models import MailingList, Message, Thread
+from colab.accounts.models import EmailAddress
 
 
 class EmailAddressAdmin(admin.ModelAdmin):
