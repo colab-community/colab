@@ -39,6 +39,9 @@ def dashboard(request):
         highest_score_threads, lists_for_user, lambda t: t.latest_message)
 
     latest_results, count_types = get_collaboration_data(user)
+
+    latest_results = filter(lambda elem: elem.modified is not None,
+                            latest_results)
     latest_results.sort(key=lambda elem: elem.modified, reverse=True)
 
     context = {
