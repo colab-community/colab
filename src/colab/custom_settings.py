@@ -133,6 +133,7 @@ LOGGING = {
     'root': {
         'level': 'WARNING',
         'handlers': ['sentry', 'console'],
+        # 'handlers': ['console'],
     },
     'formatters': {
         'verbose': {
@@ -164,6 +165,7 @@ LOGGING = {
     'loggers': {
         'django.request': {
             'handlers': ['mail_admins', 'sentry'],
+            # 'handlers': ['mail_admins'],
             'level': 'ERROR',
             'propagate': True,
         },
@@ -195,10 +197,10 @@ LOGGING = {
     }
 }
 
-COLAB_FROM_ADDRESS = '"Colab Interlegis" <noreply@interlegis.leg.br>'
-SERVER_EMAIL = COLAB_FROM_ADDRESS
-EMAIL_HOST = 'smtp.interlegis.leg.br'
-EMAIL_PORT = 25
+# COLAB_FROM_ADDRESS = '"Colab Interlegis" <noreply@interlegis.leg.br>'
+# SERVER_EMAIL = COLAB_FROM_ADDRESS
+# EMAIL_HOST = 'smtp.interlegis.leg.br'
+# EMAIL_PORT = 25
 
 TEMPLATE_CONTEXT_PROCESSORS = (
     'django.contrib.auth.context_processors.auth',
