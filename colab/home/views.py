@@ -14,6 +14,9 @@ def dashboard(request):
         user = User.objects.get(username=request.user)
 
     latest_results, count_types = get_collaboration_data(user)
+
+    latest_results = filter(lambda elem: elem.modified is not None,
+                            latest_results)
     latest_results.sort(key=lambda elem: elem.modified, reverse=True)
 
     context = {
